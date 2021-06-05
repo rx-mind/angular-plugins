@@ -21,7 +21,7 @@
           "error",
           {
             "type": "element",
-            "prefix": "ngrx-plugins",
+            "prefix": "rx-mind",
             "style": "kebab-case"
           }
         ]

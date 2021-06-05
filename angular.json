@@ -36,7 +36,7 @@
       "projectType": "application",
       "root": "apps/playground",
       "sourceRoot": "apps/playground/src",
-      "prefix": "ngrx-plugins",
+      "prefix": "rx-mind",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",

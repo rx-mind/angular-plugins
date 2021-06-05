@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'ngrx-plugins-root',
+  selector: 'rx-mind-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
