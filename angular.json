@@ -150,6 +150,31 @@
           }
         }
       }
+    },
+    "entity-component-store": {
+      "projectType": "library",
+      "root": "libs/entity-component-store",
+      "sourceRoot": "libs/entity-component-store/src",
+      "prefix": "rx-mind",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/entity-component-store"],
+          "options": {
+            "jestConfig": "libs/entity-component-store/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/entity-component-store/src/**/*.ts",
+              "libs/entity-component-store/src/**/*.html"
+            ]
+          }
+        }
+      }
     }
   }
 }
