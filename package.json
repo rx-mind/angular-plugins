@@ -37,6 +37,7 @@
     "@angular/platform-browser": "^12.0.0",
     "@angular/platform-browser-dynamic": "^12.0.0",
     "@angular/router": "^12.0.0",
+    "@ngrx/component-store": "^12.0.0",
     "@nrwl/angular": "12.3.6",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
