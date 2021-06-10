@@ -1,5 +1,5 @@
 import { ComponentStore } from '@ngrx/component-store';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable, Optional } from '@angular/core';
 import {
   EntityComponentStoreConfig,
   EntityMap,
@@ -13,6 +13,7 @@ import {
   Update,
 } from './models';
 import { createEntityStateAdapter } from './entity-state-adapter';
+import { ENTITY_COMPONENT_STORE_CONFIG } from './entity-component-store-config';
 
 @Injectable()
 export class EntityComponentStore<
@@ -22,7 +23,11 @@ export class EntityComponentStore<
 > extends ComponentStore<State> {
   private readonly stateAdapter: EntityStateAdapter<Entity, Id>;
 
-  constructor(config: EntityComponentStoreConfig<State, Entity, Id> = {}) {
+  constructor(
+    @Optional()
+    @Inject(ENTITY_COMPONENT_STORE_CONFIG)
+    config: EntityComponentStoreConfig<State, Entity, Id> = {}
+  ) {
     super(config.initialState);
     this.stateAdapter = createEntityStateAdapter(config);
   }
