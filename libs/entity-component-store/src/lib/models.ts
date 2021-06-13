@@ -48,7 +48,7 @@ export interface EntityStateAdapterConfig<
 
 export interface EntityComponentStoreConfig<
   State extends EntityState<Entity, Id>,
-  Entity,
+  Entity extends Record<string, any>,
   Id extends string | number
 > extends EntityStateAdapterConfig<Entity, Id> {
   initialState?: State;
@@ -82,9 +82,7 @@ export interface Update<Entity extends Record<string, any>, Id extends string | 
 
 export type PartialUpdater<State> = (state: State) => Partial<State>;
 
-export type ExtractEntity<State> = State extends EntityState<infer Entity, string | number>
-  ? Entity
-  : never;
+export type ExtractEntity<State> = State extends EntityState<infer Entity> ? Entity : never;
 
 export type ExtractId<State> = State extends EntityState<Record<string, any>, infer Id>
   ? Id
