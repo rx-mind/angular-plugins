@@ -1,4 +1,7 @@
-export interface EntityState<Entity extends Record<string, any>, Id extends string | number> {
+export interface EntityState<
+  Entity extends Record<string, any>,
+  Id extends string | number = string | number
+> {
   ids: Id[];
   entities: Record<Id, Entity>;
 }
