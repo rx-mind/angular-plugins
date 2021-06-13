@@ -1,5 +1,5 @@
 import { ComponentStore } from '@ngrx/component-store';
-import { Inject, Injectable, Optional } from '@angular/core';
+import { Inject, Injectable, InjectionToken, Optional } from '@angular/core';
 import {
   EntityComponentStoreConfig,
   EntityMap,
@@ -13,7 +13,10 @@ import {
   Update,
 } from './models';
 import { createEntityStateAdapter } from './entity-state-adapter';
-import { ENTITY_COMPONENT_STORE_CONFIG } from './entity-component-store-config';
+
+export const ENTITY_COMPONENT_STORE_CONFIG = new InjectionToken(
+  '@rx-mind/entity-component-store: Entity Component Store Config'
+);
 
 @Injectable()
 export class EntityComponentStore<
