@@ -35,9 +35,7 @@ export class EntityComponentStore<
     this.stateAdapter = createEntityStateAdapter(config);
   }
 
-  /**
-   * Selectors
-   */
+  // selectors
   readonly ids$ = this.select((state) => state.ids);
   readonly entities$ = this.select((state) => state.entities);
   readonly all$ = this.select(this.ids$, this.entities$, (ids, entities) =>
@@ -45,167 +43,146 @@ export class EntityComponentStore<
   );
   readonly total$ = this.select(this.ids$, (ids) => ids.length);
 
-  /**
-   * Updaters
-   */
-  addOne(entity: Entity, partialState?: Partial<State>): void;
-  addOne(entity: Entity, partialUpdater?: PartialUpdater<State>): void;
+  // updaters
   addOne(entity: Entity, partialStateOrUpdater?: Partial<State> | PartialUpdater<State>): void {
-    this.setState((state) => ({
-      ...this.stateAdapter.addOne(entity, state),
-      ...getPartialState(partialStateOrUpdater, state),
-    }));
+    this.setState((state) => {
+      const patchedState = getPatchedState(state, partialStateOrUpdater);
+      return this.stateAdapter.addOne(entity, patchedState);
+    });
   }
 
-  addMany(entities: Entity[], partialState?: Partial<State>): void;
-  addMany(entities: Entity[], partialUpdater?: PartialUpdater<State>): void;
   addMany(
     entities: Entity[],
     partialStateOrUpdater?: Partial<State> | PartialUpdater<State>
   ): void {
-    this.setState((state) => ({
-      ...this.stateAdapter.addMany(entities, state),
-      ...getPartialState(partialStateOrUpdater, state),
-    }));
+    this.setState((state) => {
+      const patchedState = getPatchedState(state, partialStateOrUpdater);
+      return this.stateAdapter.addMany(entities, patchedState);
+    });
   }
 
-  setOne(entity: Entity, partialState?: Partial<State>): void;
-  setOne(entity: Entity, partialUpdater?: PartialUpdater<State>): void;
   setOne(entity: Entity, partialStateOrUpdater?: Partial<State> | PartialUpdater<State>): void {
-    this.setState((state) => ({
-      ...this.stateAdapter.setOne(entity, state),
-      ...getPartialState(partialStateOrUpdater, state),
-    }));
+    this.setState((state) => {
+      const patchedState = getPatchedState(state, partialStateOrUpdater);
+      return this.stateAdapter.setOne(entity, patchedState);
+    });
   }
 
-  setMany(entities: Entity[], partialState?: Partial<State>): void;
-  setMany(entities: Entity[], partialUpdater?: PartialUpdater<State>): void;
   setMany(
     entities: Entity[],
     partialStateOrUpdater?: Partial<State> | PartialUpdater<State>
   ): void {
-    this.setState((state) => ({
-      ...this.stateAdapter.setMany(entities, state),
-      ...getPartialState(partialStateOrUpdater, state),
-    }));
+    this.setState((state) => {
+      const patchedState = getPatchedState(state, partialStateOrUpdater);
+      return this.stateAdapter.setMany(entities, patchedState);
+    });
   }
 
-  setAll(entities: Entity[], partialState?: Partial<State>): void;
-  setAll(entities: Entity[], partialUpdater?: PartialUpdater<State>): void;
   setAll(entities: Entity[], partialStateOrUpdater?: Partial<State> | PartialUpdater<State>): void {
-    this.setState((state) => ({
-      ...this.stateAdapter.setAll(entities, state),
-      ...getPartialState(partialStateOrUpdater, state),
-    }));
+    this.setState((state) => {
+      const patchedState = getPatchedState(state, partialStateOrUpdater);
+      return this.stateAdapter.setAll(entities, patchedState);
+    });
   }
 
-  removeOne(id: Id, partialState?: Partial<State>): void;
-  removeOne(id: Id, partialUpdater?: PartialUpdater<State>): void;
   removeOne(id: Id, partialStateOrUpdater?: Partial<State> | PartialUpdater<State>): void {
-    this.setState((state) => ({
-      ...this.stateAdapter.removeOne(id, state),
-      ...getPartialState(partialStateOrUpdater, state),
-    }));
+    this.setState((state) => {
+      const patchedState = getPatchedState(state, partialStateOrUpdater);
+      return this.stateAdapter.removeOne(id, patchedState);
+    });
   }
 
-  removeMany(ids: Id[], partialState?: Partial<State>): void;
-  removeMany(ids: Id[], partialUpdater?: PartialUpdater<State>): void;
-  removeMany(predicate: Predicate<Entity>, partialState?: Partial<State>): void;
-  removeMany(predicate: Predicate<Entity>, partialUpdater?: PartialUpdater<State>): void;
+  removeMany(ids: Id[], partialStateOrUpdater?: Partial<State> | PartialUpdater<State>): void;
+  removeMany(
+    predicate: Predicate<Entity>,
+    partialStateOrUpdater?: Partial<State> | PartialUpdater<State>
+  ): void;
   removeMany(
     idsOrPredicate: Id[] | Predicate<Entity>,
     partialStateOrUpdater?: Partial<State> | PartialUpdater<State>
   ): void {
-    this.setState((state) => ({
-      ...this.stateAdapter.removeMany(idsOrPredicate as Id[], state),
-      ...getPartialState(partialStateOrUpdater, state),
-    }));
+    this.setState((state) => {
+      const patchedState = getPatchedState(state, partialStateOrUpdater);
+      return this.stateAdapter.removeMany(idsOrPredicate as Id[], patchedState);
+    });
   }
 
-  removeAll(partialState?: Partial<State>): void;
-  removeAll(partialUpdater?: PartialUpdater<State>): void;
   removeAll(partialStateOrUpdater?: Partial<State> | PartialUpdater<State>): void {
-    this.setState((state) => ({
-      ...this.stateAdapter.removeAll(state),
-      ...getPartialState(partialStateOrUpdater, state),
-    }));
+    this.setState((state) => {
+      const patchedState = getPatchedState(state, partialStateOrUpdater);
+      return this.stateAdapter.removeAll(patchedState);
+    });
   }
 
-  updateOne(update: Update<Entity, Id>, partialState?: Partial<State>): void;
-  updateOne(update: Update<Entity, Id>, partialUpdater?: PartialUpdater<State>): void;
   updateOne(
     update: Update<Entity, Id>,
     partialStateOrUpdater?: Partial<State> | PartialUpdater<State>
   ): void {
-    this.setState((state) => ({
-      ...this.stateAdapter.updateOne(update, state),
-      ...getPartialState(partialStateOrUpdater, state),
-    }));
+    this.setState((state) => {
+      const patchedState = getPatchedState(state, partialStateOrUpdater);
+      return this.stateAdapter.updateOne(update, patchedState);
+    });
   }
 
-  updateMany(updates: Update<Entity, Id>[], partialState?: Partial<State>): void;
-  updateMany(updates: Update<Entity, Id>[], partialUpdater?: PartialUpdater<State>): void;
   updateMany(
     updates: Update<Entity, Id>[],
     partialStateOrUpdater?: Partial<State> | PartialUpdater<State>
   ): void {
-    this.setState((state) => ({
-      ...this.stateAdapter.updateMany(updates, state),
-      ...getPartialState(partialStateOrUpdater, state),
-    }));
+    this.setState((state) => {
+      const patchedState = getPatchedState(state, partialStateOrUpdater);
+      return this.stateAdapter.updateMany(updates, patchedState);
+    });
   }
 
-  upsertOne(entity: Entity, partialState?: Partial<State>): void;
-  upsertOne(entity: Entity, partialUpdater?: PartialUpdater<State>): void;
   upsertOne(entity: Entity, partialStateOrUpdater?: Partial<State> | PartialUpdater<State>): void {
-    this.setState((state) => ({
-      ...this.stateAdapter.upsertOne(entity, state),
-      ...getPartialState(partialStateOrUpdater, state),
-    }));
+    this.setState((state) => {
+      const patchedState = getPatchedState(state, partialStateOrUpdater);
+      return this.stateAdapter.upsertOne(entity, patchedState);
+    });
   }
 
-  upsertMany(entities: Entity[], partialState?: Partial<State>): void;
-  upsertMany(entities: Entity[], partialUpdater?: PartialUpdater<State>): void;
   upsertMany(
     entities: Entity[],
     partialStateOrUpdater?: Partial<State> | PartialUpdater<State>
   ): void {
-    this.setState((state) => ({
-      ...this.stateAdapter.upsertMany(entities, state),
-      ...getPartialState(partialStateOrUpdater, state),
-    }));
+    this.setState((state) => {
+      const patchedState = getPatchedState(state, partialStateOrUpdater);
+      return this.stateAdapter.upsertMany(entities, patchedState);
+    });
   }
 
-  mapOne(map: EntityMapOne<Entity, Id>, partialState?: Partial<State>): void;
-  mapOne(map: EntityMapOne<Entity, Id>, partialUpdater?: PartialUpdater<State>): void;
   mapOne(
     map: EntityMapOne<Entity, Id>,
     partialStateOrUpdater?: Partial<State> | PartialUpdater<State>
   ): void {
-    this.setState((state) => ({
-      ...this.stateAdapter.mapOne(map, state),
-      ...getPartialState(partialStateOrUpdater, state),
-    }));
+    this.setState((state) => {
+      const patchedState = getPatchedState(state, partialStateOrUpdater);
+      return this.stateAdapter.mapOne(map, patchedState);
+    });
   }
 
-  map(map: EntityMap<Entity>, partialState?: Partial<State>): void;
-  map(map: EntityMap<Entity>, partialUpdater?: PartialUpdater<State>): void;
   map(
     map: EntityMap<Entity>,
     partialStateOrUpdater?: Partial<State> | PartialUpdater<State>
   ): void {
-    this.setState((state) => ({
-      ...this.stateAdapter.map(map, state),
-      ...getPartialState(partialStateOrUpdater, state),
-    }));
+    this.setState((state) => {
+      const patchedState = getPatchedState(state, partialStateOrUpdater);
+      return this.stateAdapter.map(map, patchedState);
+    });
   }
 }
 
-function getPartialState<State>(
-  partialStateOrUpdater: Partial<State> | PartialUpdater<State> | undefined,
-  state: State
-): Partial<State> | undefined {
-  return typeof partialStateOrUpdater === 'function'
-    ? partialStateOrUpdater(state)
-    : partialStateOrUpdater;
+function getPatchedState<State>(
+  state: State,
+  partialStateOrUpdater?: Partial<State> | PartialUpdater<State>
+): State {
+  const partialState =
+    typeof partialStateOrUpdater === 'function'
+      ? partialStateOrUpdater(state)
+      : partialStateOrUpdater;
+
+  return {
+    ...state,
+    ...partialState,
+  };
 }
