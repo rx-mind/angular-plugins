@@ -6,8 +6,8 @@
  * found in the LICENSE file at https://github.com/ngrx/platform
  */
 
-import { SelectId } from './models';
 import { isDevMode } from '@angular/core';
+import { SelectId } from './models';
 
 export function selectIdValue<Entity extends Record<string, any>, Id extends string | number>(
   entity: Entity,
