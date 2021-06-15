@@ -1,15 +1,11 @@
 import { EntityState, ExtractEntity, ExtractId } from './models';
 
 export function getInitialEntityState<
-  Entity extends Record<string, any>,
-  Id extends string | number
->(): EntityState<Entity, Id>;
-export function getInitialEntityState<
   State extends EntityState<Entity, Id>,
   Entity extends Record<string, any> = ExtractEntity<State>,
   Id extends string | number = ExtractId<State>,
   AdditionalState = Omit<State, keyof EntityState<Entity, Id>>,
-  Args extends [unknown?] = keyof AdditionalState extends never
+  Args extends [Record<string, any>?] = keyof AdditionalState extends never
     ? []
     : [additionalState: AdditionalState]
 >(...additionalState: Args): State;
