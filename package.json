@@ -1,5 +1,5 @@
 {
-  "name": "ngrx-plugins",
+  "name": "@rx-mind/ngrx-plugins",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {

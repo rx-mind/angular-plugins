@@ -1,0 +1,34 @@
+name: CI Checks
+on: [push, pull_request]
+
+jobs:
+  checks:
+    runs-on: ${{ matrix.os }}
+    env:
+      NX_BRANCH: ${{ github.event.number || github.ref }}
+      NX_RUN_GROUP: ${{ github.run_id }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node-version: [14.x]
+    steps:
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - uses: actions/checkout@v2
+      - uses: actions/cache@v1
+        id: workspace-cache
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-${{ matrix.node-version }}-workspace-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-${{ matrix.node-version }}-workspace-
+      - name: Install Dependencies
+        run: npm ci
+      - name: Lint
+        run: npm run nx -- run-many --all --parallel --target=lint
+      - name: Test
+        run: npm run nx -- run-many --all --parallel --target=test
+      - name: Build
+        run: npm run nx -- run-many --all --parallel --target=build
