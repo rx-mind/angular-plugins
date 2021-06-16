@@ -1,7 +1,13 @@
-# entity-component-store
+# @rx-mind/entity-component-store
 
-This library was generated with [Nx](https://nx.dev).
+**Component Store with Entity Selectors and Updaters**
 
-## Running unit tests
+## Installation
 
-Run `nx test entity-component-store` to execute the unit tests.
+NPM: `npm i @rx-mind/entity-component-store`
+
+Yarn: `yarn add @rx-mind/entity-component-store`
+
+Angular CLI: `ng add @rx-mind/entity-component-store`
+
+**UNDER_CONSTRUCTION**
