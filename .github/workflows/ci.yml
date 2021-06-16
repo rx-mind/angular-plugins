@@ -1,5 +1,10 @@
 name: ci
-on: [push, pull_request]
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
 
 jobs:
   checks:
@@ -26,6 +31,8 @@ jobs:
             ${{ runner.os }}-${{ matrix.node-version }}-workspace-
       - name: Install Dependencies
         run: npm ci
+      - name: Format
+        run: npm run format:check
       - name: Lint
         run: npm run nx -- run-many --all --parallel --target=lint
       - name: Test
