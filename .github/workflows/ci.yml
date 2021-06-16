@@ -1,4 +1,4 @@
-name: CI Checks
+name: ci
 on: [push, pull_request]
 
 jobs:
