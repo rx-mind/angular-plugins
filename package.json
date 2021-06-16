@@ -29,8 +29,8 @@
     "pre-commit": "lint-staged"
   },
   "lint-staged": {
-    "*.{ts,html,scss,md,json}": [
-      "prettier --write",
+    "*.{js,ts,html,css,scss,md,json}": [
+      "npm run format -- --uncommitted",
       "npm run affected:lint -- --uncommitted --fix --parallel"
     ]
   },
