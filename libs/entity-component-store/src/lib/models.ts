@@ -60,7 +60,10 @@ export type EntityStateOperator<
   Id extends string | number
 > = <State extends EntityState<Entity, Id>>(arg: Arg, state: State) => State;
 
-export interface EntityMapOne<Entity extends Record<string, any>, Id extends string | number> {
+export interface EntityMapOne<
+  Entity extends Record<string, any>,
+  Id extends string | number = string | number
+> {
   id: Id;
   map: EntityMap<Entity>;
 }
@@ -69,13 +72,17 @@ export type EntityMap<Entity extends Record<string, any>> = (entity: Entity) => 
 
 export type Predicate<Entity extends Record<string, any>> = (entity: Entity) => boolean;
 
-export type SelectId<Entity extends Record<string, any>, Id extends string | number> = (
-  entity: Entity
-) => Id;
+export type SelectId<
+  Entity extends Record<string, any>,
+  Id extends string | number = string | number
+> = (entity: Entity) => Id;
 
 export type SortComparer<Entity extends Record<string, any>> = (e1: Entity, e2: Entity) => number;
 
-export interface Update<Entity extends Record<string, any>, Id extends string | number> {
+export interface Update<
+  Entity extends Record<string, any>,
+  Id extends string | number = string | number
+> {
   id: Id;
   changes: Partial<Entity>;
 }
