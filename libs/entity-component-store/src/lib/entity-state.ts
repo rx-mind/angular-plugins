@@ -1,5 +1,26 @@
 import { EntityState, ExtractEntity, ExtractId } from './models';
 
+/**
+ * Returns initial entity state.
+ *
+ * @param additionalState An object that contains initial values for additional
+ * state properties. If the state does not contain additional properties,
+ * this argument should not passed.
+ *
+ * @example
+ *
+ * **With additional state properties**
+ *
+ * interface ProductsState extends EntityState<Product, number> {
+ *   selectedId: number | null;
+ * }
+ * const initialState = getInitialEntityState<ProductsState>({ selectedId: null });
+ *
+ * **Without additional state properties**
+ *
+ * type ProductsState = EntityState<Product, number>;
+ * const initialState = getInitialEntityState<ProductsState>();
+ */
 export function getInitialEntityState<
   State extends EntityState<Entity, Id>,
   Entity extends Record<string, any> = ExtractEntity<State>,
