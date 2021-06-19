@@ -185,6 +185,47 @@
           }
         }
       }
+    },
+    "data-component-store": {
+      "projectType": "library",
+      "root": "libs/data-component-store",
+      "sourceRoot": "libs/data-component-store/src",
+      "prefix": "rx-mind",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "outputs": ["dist/libs/data-component-store"],
+          "options": {
+            "project": "libs/data-component-store/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/data-component-store/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/data-component-store/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/data-component-store"],
+          "options": {
+            "jestConfig": "libs/data-component-store/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/data-component-store/src/**/*.ts",
+              "libs/data-component-store/src/**/*.html"
+            ]
+          }
+        }
+      }
     }
   }
 }
