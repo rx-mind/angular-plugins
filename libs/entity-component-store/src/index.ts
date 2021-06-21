@@ -2,6 +2,7 @@ export { EntityComponentStore, ENTITY_COMPONENT_STORE_CONFIG } from './lib/entit
 export { getInitialEntityState } from './lib/entity-state';
 export {
   EntityState,
+  EntityComponentStoreConfig,
   EntityMapOne,
   EntityMap,
   Predicate,
@@ -9,4 +10,6 @@ export {
   SortComparer,
   Update,
   PartialUpdater,
+  ExtractEntity,
+  ExtractId,
 } from './lib/models';

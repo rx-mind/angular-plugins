@@ -48,8 +48,8 @@ export interface EntityStateAdapterConfig<
 
 export interface EntityComponentStoreConfig<
   State extends EntityState<Entity, Id>,
-  Entity extends Record<string, any>,
-  Id extends string | number
+  Entity extends Record<string, any> = ExtractEntity<State>,
+  Id extends string | number = ExtractId<State>
 > extends EntityStateAdapterConfig<Entity, Id> {
   initialState?: State;
 }
