@@ -24,7 +24,8 @@
             "prefix": "rx-mind",
             "style": "kebab-case"
           }
-        ]
+        ],
+        "@typescript-eslint/no-explicit-any": "off"
       }
     },
     {
