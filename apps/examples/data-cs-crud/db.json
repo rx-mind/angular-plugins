@@ -1,0 +1,29 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Book",
+      "price": 39.99
+    },
+    {
+      "id": 2,
+      "name": "Movie",
+      "price": 50
+    },
+    {
+      "id": 3,
+      "name": "Pencil",
+      "price": 9.99
+    },
+    {
+      "id": 4,
+      "name": "Guitar",
+      "price": 1999
+    },
+    {
+      "id": 5,
+      "name": "Drum",
+      "price": 3599.99
+    }
+  ]
+}

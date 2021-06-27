@@ -1,0 +1,32 @@
+<mat-progress-bar *ngIf="isCreating" mode="indeterminate"></mat-progress-bar>
+<mat-card class="create-product-card">
+  <h2>Create Product</h2>
+
+  <form [formGroup]="productForm" (ngSubmit)="onCreate()">
+    <mat-form-field appearance="outline">
+      <mat-label>Name</mat-label>
+      <input
+        type="text"
+        matInput
+        [formControl]="productForm.name"
+        placeholder="Guitar"
+        autocomplete="off"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Price</mat-label>
+      <input
+        type="number"
+        matInput
+        [formControl]="productForm.price"
+        placeholder="99.99"
+        autocomplete="off"
+      />
+      <mat-icon matSuffix>attach_money</mat-icon>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="productForm.invalid">
+      Create
+    </button>
+  </form>
+</mat-card>

@@ -1,0 +1,5 @@
+@use '~@angular/material' as mat;
+
+.update-product-card {
+  @include mat.elevation(3);
+}

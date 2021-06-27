@@ -1,0 +1,22 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+.error-snackbar {
+  background: #f44336;
+  color: white;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+mat-form-field {
+  display: block;
+  width: 100%;
+}

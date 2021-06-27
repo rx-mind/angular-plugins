@@ -22,17 +22,13 @@
     }
   },
   "projects": {
-    "playground": {
-      "tags": []
-    },
-    "playground-e2e": {
-      "tags": [],
-      "implicitDependencies": ["playground"]
-    },
     "entity-component-store": {
       "tags": []
     },
     "data-component-store": {
+      "tags": []
+    },
+    "examples-data-cs-crud": {
       "tags": []
     }
   }

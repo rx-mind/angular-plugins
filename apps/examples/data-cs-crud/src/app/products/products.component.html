@@ -1,0 +1,27 @@
+<ng-container *ngIf="vm$ | async as vm">
+  <mat-toolbar color="primary">Products</mat-toolbar>
+  <mat-progress-bar [mode]="vm.isPending ? 'indeterminate' : 'determinate'"></mat-progress-bar>
+
+  <div class="products-container">
+    <rx-mind-product-list
+      [products]="vm.products"
+      [selectedProduct]="vm.selectedProduct"
+      [isLoading]="vm.isLoading"
+      (reloadProducts)="onReload()"
+      (selectProduct)="onSelect($event)"
+      (deleteProduct)="onDelete($event)"
+    ></rx-mind-product-list>
+
+    <div>
+      <rx-mind-product-create
+        [isCreating]="vm.isCreating"
+        (create)="onCreate($event)"
+      ></rx-mind-product-create>
+      <rx-mind-product-update
+        [isUpdating]="vm.isUpdating"
+        [selectedProduct]="vm.selectedProduct"
+        (update)="onUpdate($event)"
+      ></rx-mind-product-update>
+    </div>
+  </div>
+</ng-container>
