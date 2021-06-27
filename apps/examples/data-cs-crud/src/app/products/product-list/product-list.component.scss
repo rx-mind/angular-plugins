@@ -1,0 +1,29 @@
+@use '~@angular/material' as mat;
+
+.product-card {
+  @include mat.elevation(3);
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  &--active {
+    @include mat.elevation(7);
+  }
+
+  &__details {
+    flex-grow: 1;
+
+    > h2 {
+      margin-bottom: 0.5rem;
+    }
+
+    > span {
+      color: gray;
+    }
+  }
+}
+
+.reload-button {
+  margin-bottom: 1rem;
+}

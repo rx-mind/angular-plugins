@@ -1,0 +1,17 @@
+.products-container {
+  max-width: 60rem;
+  margin: 1rem auto;
+  display: flex;
+  flex-direction: row;
+
+  > * {
+    flex-basis: 100%;
+    margin: 0 1rem;
+  }
+}
+
+rx-mind-product-create,
+rx-mind-product-update {
+  display: block;
+  margin-bottom: 1rem;
+}

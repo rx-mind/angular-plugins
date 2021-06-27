@@ -1,0 +1,27 @@
+<button mat-raised-button color="primary" class="reload-button" (click)="reloadProducts.emit()">
+  Reload
+  <mat-icon>refresh</mat-icon>
+</button>
+
+<mat-spinner *ngIf="isLoading; else productList"></mat-spinner>
+
+<ng-template #productList>
+  <mat-card
+    *ngFor="let product of products"
+    class="product-card"
+    [class.product--active]="product === selectedProduct"
+  >
+    <div class="product-card__details">
+      <h2>{{ product.name }}</h2>
+      <span>{{ product.price }} $</span>
+    </div>
+    <div class="product-card__actions">
+      <button mat-icon-button color="primary" (click)="selectProduct.emit(product)">
+        <mat-icon>mode_edit</mat-icon>
+      </button>
+      <button mat-icon-button color="warn" (click)="deleteProduct.emit(product)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </mat-card>
+</ng-template>
