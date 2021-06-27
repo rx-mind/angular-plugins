@@ -5,6 +5,7 @@
 ## Available Plugins
 
 - [@rx-mind/entity-component-store](./libs/entity-component-store)
+- [@rx-mind/data-component-store](./libs/data-component-store)
 
 ## Contributing
 

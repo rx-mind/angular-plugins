@@ -6,11 +6,12 @@
     "Angular",
     "NgRx",
     "Component Store",
-    "Entity"
+    "Entity",
+    "Entity Component Store"
   ],
   "author": "Marko Stanimirović <markostanimirovic95@gmail.com>",
   "license": "MIT",
-  "homepage": "https://github.com/rx-mind/ngrx-plugins#readme",
+  "homepage": "https://github.com/rx-mind/ngrx-plugins/tree/master/libs/entity-component-store#readme",
   "repository": {
     "type": "git",
     "url": "https://github.com/rx-mind/ngrx-plugins.git"

@@ -249,7 +249,6 @@ export class DataComponentStore<
       return increaseOrDecrease$.pipe(
         startWith(0),
         scan((pendingRequestCount, increaseOrDecrease) => {
-          console.log('pendingRequestCount', pendingRequestCount);
           pendingRequestCount = pendingRequestCount + increaseOrDecrease;
 
           this.patchState(({

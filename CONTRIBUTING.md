@@ -50,12 +50,6 @@ Affected:
 npm run affected:lint
 ```
 
-### Run Playground Project
-
-```
-npm run start
-```
-
 ## Coding Rules
 
 - All features or bug fixes must be covered by unit tests.
