@@ -26,6 +26,8 @@ export interface DataEffectsBuilder<
   deleteStart(callback: (id: Id) => void): void;
   deleteSuccess<Response extends Entity | Id | void>(callback: (response: Response) => void): void;
   deleteError<Error>(callback: (error: Error) => void): void;
+
+  error<Error>(callback: (error: Error) => void): void;
 }
 
 export interface DataEffectCallbacks<
@@ -51,6 +53,8 @@ export interface DataEffectCallbacks<
   deleteStart(id: Id): void;
   deleteSuccess<Response extends Entity | Id | void>(response: Response): void;
   deleteError<Error>(error: Error): void;
+
+  error<Error>(error: Error): void;
 }
 
 export function createDataEffectsBuilder<
@@ -108,6 +112,9 @@ export function createDataEffectsBuilder<
       },
       deleteError(callback) {
         overriddenEffects.deleteError = callback as <Error>(error: Error) => void;
+      },
+      error(callback) {
+        overriddenEffects.error = callback as <Error>(error: Error) => void;
       },
     },
     overriddenEffects,

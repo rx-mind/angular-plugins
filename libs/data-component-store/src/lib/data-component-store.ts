@@ -93,6 +93,8 @@ export class DataComponentStore<
 
               if (this.overriddenEffects.loadError) {
                 this.overriddenEffects.loadError(error);
+              } else if (this.overriddenEffects.error) {
+                this.overriddenEffects.error(error);
               }
             }
           )
@@ -127,6 +129,8 @@ export class DataComponentStore<
 
               if (this.overriddenEffects.loadByIdError) {
                 this.overriddenEffects.loadByIdError(error);
+              } else if (this.overriddenEffects.error) {
+                this.overriddenEffects.error(error);
               }
             }
           )
@@ -161,6 +165,8 @@ export class DataComponentStore<
 
               if (this.overriddenEffects.createError) {
                 this.overriddenEffects.createError(error);
+              } else if (this.overriddenEffects.error) {
+                this.overriddenEffects.error(error);
               }
             }
           )
@@ -195,6 +201,8 @@ export class DataComponentStore<
 
               if (this.overriddenEffects.updateError) {
                 this.overriddenEffects.updateError(error);
+              } else if (this.overriddenEffects.error) {
+                this.overriddenEffects.error(error);
               }
             }
           )
@@ -229,6 +237,8 @@ export class DataComponentStore<
 
               if (this.overriddenEffects.deleteError) {
                 this.overriddenEffects.deleteError(error);
+              } else if (this.overriddenEffects.error) {
+                this.overriddenEffects.error(error);
               }
             }
           )
