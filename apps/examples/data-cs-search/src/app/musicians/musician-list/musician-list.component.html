@@ -1,0 +1,7 @@
+<mat-spinner *ngIf="isLoading; else musicianList" class="musicians-spinner"></mat-spinner>
+
+<ng-template #musicianList>
+  <mat-card *ngFor="let musician of musicians" class="musician-card">
+    <mat-card-content>{{ musician.name }}</mat-card-content>
+  </mat-card>
+</ng-template>

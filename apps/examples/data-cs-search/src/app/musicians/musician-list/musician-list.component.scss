@@ -1,0 +1,10 @@
+@use '~@angular/material' as mat;
+
+.musician-card {
+  @include mat.elevation(3);
+  margin-bottom: 1rem;
+}
+
+.musicians-spinner {
+  margin: auto;
+}

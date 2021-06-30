@@ -1,0 +1,15 @@
+<ng-container *ngIf="vm$ | async as vm">
+  <mat-toolbar color="primary">Musicians</mat-toolbar>
+
+  <div class="musicians-container">
+    <rx-mind-musician-search
+      [query]="vm.query"
+      (search)="onSearch($event)"
+    ></rx-mind-musician-search>
+
+    <rx-mind-musician-list
+      [musicians]="vm.musicians"
+      [isLoading]="vm.isLoading"
+    ></rx-mind-musician-list>
+  </div>
+</ng-container>
