@@ -30,6 +30,9 @@
     },
     "examples-data-cs-crud": {
       "tags": []
+    },
+    "examples-data-cs-search": {
+      "tags": []
     }
   }
 }
