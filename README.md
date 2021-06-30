@@ -4,9 +4,9 @@
 
 ## Available Plugins
 
-- [@rx-mind/entity-component-store](./libs/entity-component-store)
-- [@rx-mind/data-component-store](./libs/data-component-store)
+- [@rx-mind/entity-component-store](https://github.com/rx-mind/ngrx-plugins/tree/master/libs/entity-component-store#readme)
+- [@rx-mind/data-component-store](https://github.com/rx-mind/ngrx-plugins/tree/master/libs/data-component-store#readme)
 
 ## Contributing
 
-Contributions are welcome! To get started, read our [contribution guidelines](./CONTRIBUTING.md).
+Contributions are welcome! To get started, read our [contribution guidelines](https://github.com/rx-mind/ngrx-plugins/blob/master/CONTRIBUTING.md).

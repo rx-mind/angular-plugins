@@ -9,16 +9,17 @@
 - Data State
 - Initialization
 - Data Service
-- Effects
+  - Custom Data Service
 - Selectors
 - Updaters
+- Effects
+  - Changing Default Behavior
+  - Error Handling
 - Examples
   - CRUD
   - Search
   - Pagination
   - Polling
-  - Error Handling
-  - Custom Data Service
 - [TODO List](#todo-list)
 
 ## Overview

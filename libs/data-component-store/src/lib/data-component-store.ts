@@ -83,7 +83,7 @@ export class DataComponentStore<
                 this.setAll(response);
               } else {
                 console.error(
-                  '@rx-mind/entity-component-store: Load request does not return an array of entities. ' +
+                  '@rx-mind/data-component-store: Load request does not return an array of entities. ' +
                     'Use `overrideDataEffects` method to change the default behavior of `loadSuccess` method.'
                 );
               }
