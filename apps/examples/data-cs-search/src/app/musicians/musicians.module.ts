@@ -5,22 +5,11 @@ import { MusicianSearchComponent } from './musician-search/musician-search.compo
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatInputModule } from '@angular/material/input';
-import { MatCardModule } from '@angular/material/card';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MusiciansMaterialModule } from './musicians-material.module';
 
 @NgModule({
   declarations: [MusiciansComponent, MusicianListComponent, MusicianSearchComponent],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    MatToolbarModule,
-    MatInputModule,
-    MatCardModule,
-    MatProgressSpinnerModule,
-  ],
+  imports: [CommonModule, ReactiveFormsModule, HttpClientModule, MusiciansMaterialModule],
   exports: [MusiciansComponent],
 })
 export class MusiciansModule {}
