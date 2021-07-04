@@ -1,0 +1,7 @@
+@use '~@angular/material' as mat;
+
+.books-container {
+  @include mat.elevation(7);
+  max-width: 70rem;
+  margin: 2rem auto;
+}

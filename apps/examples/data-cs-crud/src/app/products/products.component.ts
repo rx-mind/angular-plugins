@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ProductsStore } from './products.store';
 import { Product } from './product.model';
 import { Update } from '@rx-mind/entity-component-store';
@@ -7,6 +7,7 @@ import { Update } from '@rx-mind/entity-component-store';
   selector: 'rx-mind-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   viewProviders: [ProductsStore],
 })
 export class ProductsComponent implements OnInit {

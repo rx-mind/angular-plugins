@@ -1,0 +1,15 @@
+<ng-container *ngIf="vm$ | async as vm">
+  <mat-toolbar color="primary">Books</mat-toolbar>
+
+  <div class="books-container">
+    <rx-mind-books-table [books]="vm.books" [isLoading]="vm.isLoading"></rx-mind-books-table>
+
+    <rx-mind-books-pagination
+      [currentPage]="vm.currentPage"
+      [pageSize]="vm.pageSize"
+      [totalCount]="vm.totalCount"
+      (currentPageChange)="onCurrentPageChange($event)"
+      (pageSizeChange)="onPageSizeChange($event)"
+    ></rx-mind-books-pagination>
+  </div>
+</ng-container>

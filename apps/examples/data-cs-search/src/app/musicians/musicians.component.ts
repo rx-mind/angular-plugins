@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MusiciansStore } from './musicians.store';
 
 @Component({
   selector: 'rx-mind-musicians',
   templateUrl: './musicians.component.html',
   styleUrls: ['./musicians.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   viewProviders: [MusiciansStore],
 })
 export class MusiciansComponent {
