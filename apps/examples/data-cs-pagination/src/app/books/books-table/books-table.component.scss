@@ -1,0 +1,15 @@
+.books-table-wrapper {
+  height: 33.5rem;
+  overflow: auto;
+
+  > table {
+    width: 100%;
+  }
+}
+
+.books-table-spinner {
+  display: block;
+  margin-top: 10rem;
+  margin-left: auto;
+  margin-right: auto;
+}

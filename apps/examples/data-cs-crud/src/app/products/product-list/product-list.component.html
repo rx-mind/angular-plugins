@@ -9,7 +9,7 @@
   <mat-card
     *ngFor="let product of products"
     class="product-card"
-    [class.product--active]="product === selectedProduct"
+    [class.product-card--active]="product === selectedProduct"
   >
     <div class="product-card__details">
       <h2>{{ product.name }}</h2>

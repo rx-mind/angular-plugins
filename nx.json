@@ -33,6 +33,9 @@
     },
     "examples-data-cs-search": {
       "tags": []
+    },
+    "examples-data-cs-pagination": {
+      "tags": []
     }
   }
 }

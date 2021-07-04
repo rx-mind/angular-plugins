@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { Product } from '../product.model';
 import { ProductForm } from '../product-form.model';
 import { Update } from '@rx-mind/entity-component-store';
@@ -7,6 +7,7 @@ import { Update } from '@rx-mind/entity-component-store';
   selector: 'rx-mind-product-update',
   templateUrl: './product-update.component.html',
   styleUrls: ['./product-update.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductUpdateComponent {
   readonly productForm = new ProductForm();

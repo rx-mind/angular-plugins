@@ -1,11 +1,12 @@
-import { Component, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { debounceTime } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   selector: 'rx-mind-musician-search',
   templateUrl: './musician-search.component.html',
   styleUrls: ['./musician-search.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MusicianSearchComponent {
   searchControl = new FormControl('');
@@ -14,5 +15,8 @@ export class MusicianSearchComponent {
     this.searchControl.setValue(query, { emitEvent: false });
   }
 
-  @Output() search = this.searchControl.valueChanges.pipe(debounceTime(300));
+  @Output() search = this.searchControl.valueChanges.pipe(
+    debounceTime(300),
+    distinctUntilChanged()
+  );
 }
