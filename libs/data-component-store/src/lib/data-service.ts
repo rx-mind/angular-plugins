@@ -2,6 +2,7 @@ import { inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { QueryParams } from './models';
+import { removeTrailingSlashes } from './helpers';
 
 export interface DataService<
   Entity extends Record<string, any>,
@@ -18,9 +19,13 @@ export class DefaultDataService<
   Entity extends Record<string, any>,
   Id extends string | number = string | number
 > implements DataService<Entity, Id> {
-  protected readonly http = inject(HttpClient);
+  protected readonly http: HttpClient;
+  protected readonly baseUrl: string;
 
-  constructor(protected readonly baseUrl: string) {}
+  constructor(baseUrl: string) {
+    this.http = inject(HttpClient);
+    this.baseUrl = removeTrailingSlashes(baseUrl);
+  }
 
   get(params?: QueryParams): Observable<Entity[] | Record<string, any>> {
     return this.http.get<Entity[] | Record<string, any>>(this.baseUrl, { params });
