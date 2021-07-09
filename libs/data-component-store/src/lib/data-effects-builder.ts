@@ -5,7 +5,7 @@ export interface DataEffectsBuilder<
   Entity extends Record<string, any>,
   Id extends string | number = string | number
 > {
-  loadStart(callback: (params?: QueryParams) => void): void;
+  loadStart<Params extends QueryParams | undefined>(callback: (params: Params) => void): void;
   loadSuccess<Response extends Entity[] | Record<string, any>>(
     callback: (response: Response) => void
   ): void;
@@ -34,7 +34,7 @@ export interface DataEffectCallbacks<
   Entity extends Record<string, any>,
   Id extends string | number = string | number
 > {
-  loadStart(params?: QueryParams): void;
+  loadStart<Params extends QueryParams | undefined>(params: Params): void;
   loadSuccess<Response extends Entity[] | Record<string, any>>(response: Response): void;
   loadError<Error>(error: Error): void;
 
@@ -69,7 +69,7 @@ export function createDataEffectsBuilder<
   return {
     builder: {
       loadStart(callback) {
-        overriddenEffects.loadStart = callback;
+        overriddenEffects.loadStart = callback as <Params>(params: Params) => void;
       },
       loadSuccess(callback) {
         overriddenEffects.loadSuccess = callback as <Response>(response: Response) => void;
