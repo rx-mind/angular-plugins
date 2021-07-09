@@ -1,4 +1,4 @@
-import { Inject, Injectable, InjectionToken, Optional } from '@angular/core';
+import { Inject, Injectable, InjectionToken } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { mergeMap, scan, startWith, switchMap, tap } from 'rxjs/operators';
 import { tapResponse } from '@ngrx/component-store';
@@ -31,9 +31,7 @@ export class DataComponentStore<
   private readonly overriddenEffects: Partial<DataEffectCallbacks<Entity, Id>>;
 
   constructor(
-    @Optional()
-    @Inject(DATA_COMPONENT_STORE_CONFIG)
-    config: DataComponentStoreConfig<State, Entity, Id>
+    @Inject(DATA_COMPONENT_STORE_CONFIG) config: DataComponentStoreConfig<State, Entity, Id>
   ) {
     super(config);
 
