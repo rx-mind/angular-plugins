@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { Product } from '../product.model';
-import { ProductForm } from '../product-form.model';
+import { ProductForm } from '../product.form';
 import { Update } from '@rx-mind/entity-component-store';
 
 @Component({

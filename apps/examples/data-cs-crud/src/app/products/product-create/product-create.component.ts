@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { ProductForm } from '../product-form.model';
+import { ProductForm } from '../product.form';
 import { Product } from '../product.model';
 
 @Component({
