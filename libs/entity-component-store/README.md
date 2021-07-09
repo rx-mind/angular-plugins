@@ -192,6 +192,8 @@ export class ProductsStore extends EntityComponentStore<ProductsState> {
 - `mapOne` - Updates one entity in the collection by defining a map function.
 - `map` - Updates multiple entities in the collection by defining a map function.
 
+Each entity updater accepts a partial state, or a partial updater function as an optional second argument.
+
 Usage:
 
 ```ts
@@ -200,7 +202,7 @@ Usage:
   templateUrl: './products.component.html',
   viewProviders: [ProductsStore],
 })
-export class ProductsComponent implements OnInit {
+export class ProductsComponent {
   constructor(private readonly productsStore: ProductsStore) {}
 
   onUpdateProduct(productUpdate: Update<Product, number>): void {
@@ -212,8 +214,8 @@ export class ProductsComponent implements OnInit {
   }
 
   onRemoveProduct(id: number): void {
-    this.productsStore.removeOne(id, (state) => ({
-      selectedId: state.selectedId === id ? null : state.selectedId,
+    this.productsStore.removeOne(id, ({ selectedId }) => ({
+      selectedId: selectedId === id ? null : selectedId,
     }));
   }
 }
