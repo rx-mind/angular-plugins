@@ -15,6 +15,7 @@ module.exports = {
     },
   },
   coverageDirectory: '../../coverage/libs/data-component-store',
+  coverageReporters: ['text', 'html'],
   snapshotSerializers: [
     'jest-preset-angular/build/serializers/no-ng-attributes',
     'jest-preset-angular/build/serializers/ng-snapshot',

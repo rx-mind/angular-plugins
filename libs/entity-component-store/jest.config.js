@@ -15,6 +15,13 @@ module.exports = {
     },
   },
   coverageDirectory: '../../coverage/libs/entity-component-store',
+  coveragePathIgnorePatterns: [
+    // @ngrx/entity files
+    '<rootDir>/src/lib/select-id.ts',
+    '<rootDir>/src/lib/sorted-state-adapter.ts',
+    '<rootDir>/src/lib/unsorted-state-adapter.ts',
+  ],
+  coverageReporters: ['text', 'html'],
   snapshotSerializers: [
     'jest-preset-angular/build/serializers/no-ng-attributes',
     'jest-preset-angular/build/serializers/ng-snapshot',

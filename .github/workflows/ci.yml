@@ -34,8 +34,8 @@ jobs:
       - name: Format
         run: npm run format:check
       - name: Lint
-        run: npm run nx -- run-many --all --parallel --target=lint
+        run: npm run lint
       - name: Test
-        run: npm run nx -- run-many --all --parallel --target=test
+        run: npm run test:coverage
       - name: Build
-        run: npm run nx -- run-many --all --parallel --target=build
+        run: npm run build
