@@ -458,6 +458,19 @@ describe('DataComponentStore', () => {
         });
       });
 
+      it('should log error when load success effect is not overridden and data service does not return an array of entities', () => {
+        const { store, dataService } = effectsSetup();
+
+        console.error = jest.fn();
+        spyOn(dataService, 'get').and.returnValue(of({ products: [p1, p2] }));
+
+        store.load();
+        expect(console.error).toHaveBeenCalledWith(
+          '@rx-mind/data-component-store: Load request does not return an array of entities. ' +
+            'Use `overrideDataEffects` method to change the default behavior of `loadSuccess` method.'
+        );
+      });
+
       it('should invoke custom load error effect when load error effect is overridden', () => {
         const { dataService, testScheduler } = effectsSetup();
         const message = 'productsError';
