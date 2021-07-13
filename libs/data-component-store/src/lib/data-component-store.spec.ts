@@ -891,7 +891,7 @@ describe('DataComponentStore', () => {
         spyOn(dataService, 'update').and.returnValue(of(p2));
 
         store.update({ id: p2.id, changes: p2 });
-        expect(dataService.update).toHaveBeenCalledWith(p2.id, p2);
+        expect(dataService.update).toHaveBeenCalledWith({ id: p2.id, changes: p2 });
       });
 
       it('should invoke custom update start effect when update start effect is overridden', () => {

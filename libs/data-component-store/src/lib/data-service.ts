@@ -1,6 +1,7 @@
 import { inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Update } from '@rx-mind/entity-component-store';
 import { QueryParams } from './models';
 import { removeTrailingSlashes } from './helpers';
 
@@ -11,7 +12,7 @@ export interface DataService<
   get(params?: QueryParams): Observable<Entity[] | Record<string, any>>;
   getById(id: Id): Observable<Entity>;
   create(entity: Partial<Entity>): Observable<Entity>;
-  update(id: Id, entity: Partial<Entity>): Observable<Entity>;
+  update(entityUpdate: Update<Entity, Id>): Observable<Entity>;
   delete(id: Id): Observable<Entity | Id | void>;
 }
 
@@ -39,8 +40,8 @@ export class DefaultDataService<
     return this.http.post<Entity>(this.baseUrl, entity);
   }
 
-  update(id: Id, entity: Partial<Entity>): Observable<Entity> {
-    return this.http.put<Entity>(`${this.baseUrl}/${id}`, entity);
+  update(entityUpdate: Update<Entity, Id>): Observable<Entity> {
+    return this.http.put<Entity>(`${this.baseUrl}/${entityUpdate.id}`, entityUpdate.changes);
   }
 
   delete(id: Id): Observable<Entity | Id | void> {

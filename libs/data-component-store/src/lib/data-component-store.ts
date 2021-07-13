@@ -1,5 +1,5 @@
 import { Inject, Injectable, InjectionToken } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { mergeMap, scan, startWith, switchMap, tap } from 'rxjs/operators';
 import { tapResponse } from '@ngrx/component-store';
 import {
@@ -104,17 +104,17 @@ export class DataComponentStore<
   readonly loadById = this.effect<Id>((id$) => {
     return id$.pipe(
       tap((id) => {
-        this.updateIsLoadByIdPending(1);
+        this.addToLoadByIdRequestCount(1);
 
         if (this.overriddenEffects.loadByIdStart) {
           this.overriddenEffects.loadByIdStart(id);
         }
       }),
-      mergeMap((id) =>
-        this.dataService.getById(id).pipe(
+      mergeMap((id) => {
+        return this.dataService.getById(id).pipe(
           tapResponse(
             (entity) => {
-              this.updateIsLoadByIdPending(-1);
+              this.addToLoadByIdRequestCount(-1);
 
               if (this.overriddenEffects.loadByIdSuccess) {
                 this.overriddenEffects.loadByIdSuccess(entity);
@@ -123,7 +123,7 @@ export class DataComponentStore<
               }
             },
             (error) => {
-              this.updateIsLoadByIdPending(-1);
+              this.addToLoadByIdRequestCount(-1);
 
               if (this.overriddenEffects.loadByIdError) {
                 this.overriddenEffects.loadByIdError(error);
@@ -132,15 +132,15 @@ export class DataComponentStore<
               }
             }
           )
-        )
-      )
+        );
+      })
     );
   });
 
   readonly create = this.effect<Partial<Entity>>((entity$) => {
     return entity$.pipe(
       tap((entity) => {
-        this.updateIsCreatePending(1);
+        this.addToCreateRequestCount(1);
 
         if (this.overriddenEffects.createStart) {
           this.overriddenEffects.createStart(entity);
@@ -149,17 +149,17 @@ export class DataComponentStore<
       mergeMap((entity) => {
         return this.dataService.create(entity).pipe(
           tapResponse(
-            (entity) => {
-              this.updateIsCreatePending(-1);
+            (createdEntity) => {
+              this.addToCreateRequestCount(-1);
 
               if (this.overriddenEffects.createSuccess) {
-                this.overriddenEffects.createSuccess(entity);
+                this.overriddenEffects.createSuccess(createdEntity);
               } else {
-                this.addOne(entity);
+                this.addOne(createdEntity);
               }
             },
             (error) => {
-              this.updateIsCreatePending(-1);
+              this.addToCreateRequestCount(-1);
 
               if (this.overriddenEffects.createError) {
                 this.overriddenEffects.createError(error);
@@ -176,26 +176,26 @@ export class DataComponentStore<
   readonly update = this.effect<Update<Entity, Id>>((entityUpdate$) => {
     return entityUpdate$.pipe(
       tap((entityUpdate) => {
-        this.updateIsUpdatePending(1);
+        this.addToUpdateRequestCount(1);
 
         if (this.overriddenEffects.updateStart) {
           this.overriddenEffects.updateStart(entityUpdate);
         }
       }),
-      mergeMap(({ id, changes }) => {
-        return this.dataService.update(id, changes).pipe(
+      mergeMap((entityUpdate) => {
+        return this.dataService.update(entityUpdate).pipe(
           tapResponse(
-            (entity) => {
-              this.updateIsUpdatePending(-1);
+            (updatedEntity) => {
+              this.addToUpdateRequestCount(-1);
 
               if (this.overriddenEffects.updateSuccess) {
-                this.overriddenEffects.updateSuccess(entity);
+                this.overriddenEffects.updateSuccess(updatedEntity);
               } else {
-                this.updateOne({ id, changes: entity });
+                this.updateOne({ id: entityUpdate.id, changes: updatedEntity });
               }
             },
             (error) => {
-              this.updateIsUpdatePending(-1);
+              this.addToUpdateRequestCount(-1);
 
               if (this.overriddenEffects.updateError) {
                 this.overriddenEffects.updateError(error);
@@ -212,7 +212,7 @@ export class DataComponentStore<
   readonly delete = this.effect<Id>((id$) => {
     return id$.pipe(
       tap((id) => {
-        this.updateIsDeletePending(1);
+        this.addToDeleteRequestCount(1);
 
         if (this.overriddenEffects.deleteStart) {
           this.overriddenEffects.deleteStart(id);
@@ -222,7 +222,7 @@ export class DataComponentStore<
         return this.dataService.delete(id).pipe(
           tapResponse(
             (response) => {
-              this.updateIsDeletePending(-1);
+              this.addToDeleteRequestCount(-1);
 
               if (this.overriddenEffects.deleteSuccess) {
                 this.overriddenEffects.deleteSuccess(response);
@@ -231,7 +231,7 @@ export class DataComponentStore<
               }
             },
             (error) => {
-              this.updateIsDeletePending(-1);
+              this.addToDeleteRequestCount(-1);
 
               if (this.overriddenEffects.deleteError) {
                 this.overriddenEffects.deleteError(error);
@@ -245,19 +245,19 @@ export class DataComponentStore<
     );
   });
 
-  private readonly updateIsLoadByIdPending = this.createUpdatePendingEffect('loadById');
-  private readonly updateIsCreatePending = this.createUpdatePendingEffect('create');
-  private readonly updateIsUpdatePending = this.createUpdatePendingEffect('update');
-  private readonly updateIsDeletePending = this.createUpdatePendingEffect('delete');
+  private readonly addToLoadByIdRequestCount = this.createAddToRequestCountEffect('loadById');
+  private readonly addToCreateRequestCount = this.createAddToRequestCountEffect('create');
+  private readonly addToUpdateRequestCount = this.createAddToRequestCountEffect('update');
+  private readonly addToDeleteRequestCount = this.createAddToRequestCountEffect('delete');
 
-  private createUpdatePendingEffect(
+  private createAddToRequestCountEffect(
     entityMethodName: 'loadById' | 'create' | 'update' | 'delete'
-  ): (observableOrValue: number | Observable<number>) => Subscription {
-    return this.effect<number>((increaseOrDecrease$) => {
-      return increaseOrDecrease$.pipe(
+  ): (value: number) => Subscription {
+    return this.effect<number>((value$) => {
+      return value$.pipe(
         startWith(0),
-        scan((pendingRequestCount, increaseOrDecrease) => {
-          pendingRequestCount = pendingRequestCount + increaseOrDecrease;
+        scan((pendingRequestCount, value) => {
+          pendingRequestCount = pendingRequestCount + value;
 
           this.patchState(({
             [`is${capitalize(entityMethodName)}Pending`]: pendingRequestCount > 0,

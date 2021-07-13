@@ -85,13 +85,15 @@ describe('DefaultDataService', () => {
     it('should update entity', () => {
       const baseUrl = '/guitars';
       const id = 10;
-      const guitar = { name: 'stratocaster' };
+      const changes = { name: 'stratocaster' };
       const { dataService, http, testScheduler } = setup(baseUrl);
-      spyOn(http, 'put').and.returnValue(of({ ...guitar, id }));
+      spyOn(http, 'put').and.returnValue(of({ ...changes, id }));
 
       testScheduler.run(({ expectObservable }) => {
-        expectObservable(dataService.update(id, guitar)).toBe('(x|)', { x: { ...guitar, id } });
-        expect(http.put).toHaveBeenCalledWith(`${baseUrl}/${id}`, guitar);
+        expectObservable(dataService.update({ id, changes })).toBe('(x|)', {
+          x: { ...changes, id },
+        });
+        expect(http.put).toHaveBeenCalledWith(`${baseUrl}/${id}`, changes);
       });
     });
   });
