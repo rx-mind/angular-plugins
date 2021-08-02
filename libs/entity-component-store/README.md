@@ -14,7 +14,8 @@
 
 - NPM: `npm install @rx-mind/entity-component-store`
 - Yarn: `yarn add @rx-mind/entity-component-store`
-- Angular CLI: `ng add @rx-mind/entity-component-store`
+
+> **Note:** `@rx-mind/entity-component-store` has `@ngrx/component-store` as a peer dependency.
 
 ## Entity State
 
@@ -58,6 +59,7 @@ The constructor of `EntityComponentStore` accepts a configuration object that co
 ```ts
 import { EntityComponentStore } from '@rx-mind/entity-component-store';
 
+@Injectable()
 export class ProductsStore extends EntityComponentStore<ProductsState> {
   constructor() {
     super({ initialState, selectId, sortComparer });
@@ -92,6 +94,7 @@ Similar to `ComponentStore`, the state of `EntityComponentStore` can be initiali
 by calling `setState` method:
 
 ```ts
+@Injectable()
 export class ProductsStore extends EntityComponentStore<ProductsState> {
   constructor(private readonly productsService: ProductsService) {
     super();
@@ -152,6 +155,7 @@ export class ProductsComponent {
 Usage:
 
 ```ts
+@Injectable()
 export class ProductsStore extends EntityComponentStore<ProductsState> {
   private readonly selectedId$ = this.select((s) => s.selectedId);
 
