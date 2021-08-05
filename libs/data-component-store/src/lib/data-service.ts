@@ -13,7 +13,7 @@ export interface DataService<
   getById(id: Id): Observable<Entity>;
   create(entity: Partial<Entity>): Observable<Entity>;
   update(entityUpdate: Update<Entity, Id>): Observable<Entity>;
-  delete(id: Id): Observable<Entity | Id | void>;
+  delete(id: Id): Observable<Entity | Id | null>;
 }
 
 export class DefaultDataService<
@@ -44,8 +44,8 @@ export class DefaultDataService<
     return this.http.put<Entity>(`${this.baseUrl}/${entityUpdate.id}`, entityUpdate.changes);
   }
 
-  delete(id: Id): Observable<Entity | Id | void> {
-    return this.http.delete<Entity | Id | void>(`${this.baseUrl}/${id}`);
+  delete(id: Id): Observable<Entity | Id | null> {
+    return this.http.delete<Entity | Id | null>(`${this.baseUrl}/${id}`);
   }
 }
 
