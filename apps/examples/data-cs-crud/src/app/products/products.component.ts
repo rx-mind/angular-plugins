@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Update } from '@rx-mind/entity-component-store';
 import { ProductsStore } from './products.store';
 import { Product } from './product.model';
-import { Update } from '@rx-mind/entity-component-store';
 
 @Component({
   selector: 'rx-mind-products',
