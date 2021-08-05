@@ -1,5 +1,8 @@
 # @rx-mind/ngrx-plugins
 
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/rx-mind/ngrx-plugins/blob/master/LICENSE)
+[![CI Status](https://github.com/rx-mind/ngrx-plugins/actions/workflows/ci.yml/badge.svg)](https://github.com/rx-mind/ngrx-plugins/actions/workflows/ci.yml)
+
 **Community-Driven [NgRx](https://github.com/ngrx/platform) Plugins**
 
 ## Available Plugins

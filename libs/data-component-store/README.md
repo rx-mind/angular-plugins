@@ -1,5 +1,9 @@
 # @rx-mind/data-component-store
 
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/rx-mind/ngrx-plugins/blob/master/LICENSE)
+[![NPM](https://img.shields.io/npm/v/@rx-mind/data-component-store)](https://www.npmjs.com/package/@rx-mind/data-component-store)
+[![CI Status](https://github.com/rx-mind/ngrx-plugins/actions/workflows/ci.yml/badge.svg)](https://github.com/rx-mind/ngrx-plugins/actions/workflows/ci.yml)
+
 **[Component Store](https://ngrx.io/guide/component-store) with [Entity](https://ngrx.io/guide/entity) Selectors, Updaters, and Effects**
 
 ## Contents

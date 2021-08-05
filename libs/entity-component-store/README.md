@@ -1,5 +1,9 @@
 # @rx-mind/entity-component-store
 
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/rx-mind/ngrx-plugins/blob/master/LICENSE)
+[![NPM](https://img.shields.io/npm/v/@rx-mind/entity-component-store)](https://www.npmjs.com/package/@rx-mind/entity-component-store)
+[![CI Status](https://github.com/rx-mind/ngrx-plugins/actions/workflows/ci.yml/badge.svg)](https://github.com/rx-mind/ngrx-plugins/actions/workflows/ci.yml)
+
 **[Component Store](https://ngrx.io/guide/component-store) with [Entity](https://ngrx.io/guide/entity) Selectors and Updaters**
 
 ## Contents
@@ -12,7 +16,7 @@
 
 ## Installation
 
-- NPM: `npm install @rx-mind/entity-component-store`
+- NPM: `npm i @rx-mind/entity-component-store`
 - Yarn: `yarn add @rx-mind/entity-component-store`
 
 > **Note:** `@rx-mind/entity-component-store` has `@ngrx/component-store` as a peer dependency.
