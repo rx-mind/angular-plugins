@@ -10,6 +10,7 @@
 
 - [Overview](#overview)
 - [Walkthrough](#walkthrough)
+- [Demo](#demo)
 - [Installation](#installation)
 - [Data State](#data-state)
 - [Initialization](#initialization)
@@ -198,7 +199,10 @@ export class ProductsStore extends DataComponentStore<ProductsState> {
 }
 ```
 
-See more `DataComponentStore` examples [here](https://github.com/rx-mind/ngrx-plugins/tree/master/apps/examples).
+## Demo
+
+See `DataComponentStore` in action on [StackBlitz](https://stackblitz.com/edit/data-component-store-demo?file=src/app/books/books.component.ts).
+More examples are available [here](#examples).
 
 ## Installation
 
