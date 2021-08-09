@@ -1,13 +1,12 @@
 {
   "name": "@rx-mind/entity-component-store",
-  "version": "12.0.0-beta.0",
+  "version": "12.0.0-beta.1",
   "description": "Component Store with Entity Selectors and Updaters",
   "keywords": [
     "Angular",
     "NgRx",
     "Component Store",
-    "Entity",
-    "Entity Component Store"
+    "Entity"
   ],
   "author": "Marko Stanimirović <markostanimirovic95@gmail.com>",
   "license": "MIT",

@@ -1,15 +1,14 @@
 {
   "name": "@rx-mind/data-component-store",
-  "version": "12.0.0-beta.0",
+  "version": "12.0.0-beta.1",
   "description": "Component Store with Entity Updaters, Selectors, and Effects",
   "keywords": [
     "Angular",
     "NgRx",
     "Component Store",
     "Entity",
-    "Entity Component Store",
     "Data",
-    "Data Component Store"
+    "CRUD"
   ],
   "author": "Marko Stanimirović <markostanimirovic95@gmail.com>",
   "license": "MIT",
@@ -18,7 +17,7 @@
     "@angular/common": "^12.0.0",
     "@angular/core": "^12.0.0",
     "@ngrx/component-store": "^12.0.0",
-    "@rx-mind/entity-component-store": "^12.0.0"
+    "@rx-mind/entity-component-store": "12.0.0-beta.1"
   },
   "dependencies": {
     "tslib": "^2.1.0"
