@@ -1,0 +1,19 @@
+{
+  "name": "@rx-mind/component-store-helpers",
+  "version": "0.0.0",
+  "description": "Component Store Helpers for Better Developer Experience",
+  "keywords": [
+    "Angular",
+    "NgRx",
+    "Component Store"
+  ],
+  "author": "Marko Stanimirović <markostanimirovic95@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/rx-mind/ngrx-plugins/tree/master/libs/component-store-helpers#readme",
+  "peerDependencies": {
+    "@ngrx/component-store": "^12.0.0"
+  },
+  "dependencies": {
+    "tslib": "^2.1.0"
+  }
+}

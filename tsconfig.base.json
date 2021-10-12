@@ -16,7 +16,8 @@
     "baseUrl": ".",
     "paths": {
       "@rx-mind/entity-component-store": ["libs/entity-component-store/src/index.ts"],
-      "@rx-mind/data-component-store": ["libs/data-component-store/src/index.ts"]
+      "@rx-mind/data-component-store": ["libs/data-component-store/src/index.ts"],
+      "@rx-mind/component-store-helpers": ["libs/component-store-helpers/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

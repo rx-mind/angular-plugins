@@ -113,6 +113,47 @@
         }
       }
     },
+    "component-store-helpers": {
+      "projectType": "library",
+      "root": "libs/component-store-helpers",
+      "sourceRoot": "libs/component-store-helpers/src",
+      "prefix": "rx-mind",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "outputs": ["dist/libs/component-store-helpers"],
+          "options": {
+            "project": "libs/component-store-helpers/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/component-store-helpers/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/component-store-helpers/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/component-store-helpers"],
+          "options": {
+            "jestConfig": "libs/component-store-helpers/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/component-store-helpers/src/**/*.ts",
+              "libs/component-store-helpers/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "examples-data-cs-crud": {
       "projectType": "application",
       "root": "apps/examples/data-cs-crud",
