@@ -28,8 +28,6 @@ The name of each generated selector will be equal to the name of the state prope
 
 #### Usage Notes
 
-**Defining `UsersState`:**
-
 ```ts
 import { ComponentStore } from '@ngrx/component-store';
 import { getComponentStateSelectors } from '@rx-mind/component-store-helpers';
@@ -45,38 +43,20 @@ const initialState: UsersState = {
   isLoading: false,
   selectedUserId: null,
 };
-```
 
-**`UsersStore` without `getComponentStateSelectors`:**
-
-```ts
 @Injectable()
 export class UsersStore extends ComponentStore<UsersState> {
-  readonly users$ = this.select((state) => state.users);
-  readonly isLoading$ = this.select((state) => state.isLoading);
-  readonly selectedUserId$ = this.select((state) => state.selectedUserId);
-  readonly selectedUser$ = this.select(
-    this.users$,
-    this.selectedUserId$,
-    (users, selectedId) => users.find((user) => user.id === selectedId) ?? null
-  );
+  private readonly selectors = getComponentStateSelectors(this);
 
-  constructor() {
-    super(initialState);
-  }
-}
-```
-
-**`UsersStore` with `getComponentStateSelectors`:**
-
-```ts
-@Injectable()
-export class UsersStore extends ComponentStore<UsersState> {
-  readonly selectors = getComponentStateSelectors(this);
-  readonly selectedUser$ = this.select(
+  readonly vm$ = this.select(
     this.selectors.users$,
+    this.selectors.isLoading$,
     this.selectors.selectedUserId$,
-    (users, selectedId) => users.find((user) => user.id === selectedId) ?? null
+    (users, isLoading, selectedId) => ({
+      users,
+      isLoading,
+      selectedUser: users.find((user) => user.id === selectedId) ?? null,
+    })
   );
 
   constructor() {
