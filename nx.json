@@ -28,6 +28,9 @@
     "data-component-store": {
       "tags": []
     },
+    "component-store-helpers": {
+      "tags": []
+    },
     "examples-data-cs-crud": {
       "tags": []
     },
