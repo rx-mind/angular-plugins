@@ -17,7 +17,7 @@
 - NPM: `npm i @rx-mind/component-store-helpers`
 - Yarn: `yarn add @rx-mind/component-store-helpers`
 
-> **Note:** `@rx-mind/component-store-helpers` as `@ngrx/component-store` as a peer dependency.
+> **Note:** `@rx-mind/component-store-helpers` has `@ngrx/component-store` as a peer dependency.
 
 ## API
 
@@ -65,7 +65,7 @@ export class UsersStore extends ComponentStore<UsersState> {
 }
 ```
 
-[Live Demo ⚡](https://stackblitz.com/edit/get-component-state-selectors-demo?file=src/app/users.store.ts)
+[comment]: <> ([Live Demo ⚡]&#40;https://stackblitz.com/edit/get-component-state-selectors-demo?file=src/app/users.store.ts&#41;)
 
 #### Restrictions
 
