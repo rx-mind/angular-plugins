@@ -13,17 +13,11 @@ type ComponentStateSelectors<Store extends ComponentStore<any>> = {
   [K in ComponentStateKeys<Store>[number] as `${K}$`]: Observable<ComponentState<Store>[K]>;
 };
 
-type NotAllowedComponentStateCheck<
-  Store extends ComponentStore<any>
-> = ComponentState<Store> extends Required<ComponentState<Store>>
-  ? unknown
-  : 'optional properties are not allowed in the component store state';
-
 const notInitializedErrorMessage =
   'The `getComponentStateSelectors` function cannot be used for ComponentStore whose state is initialized lazily.';
 
 export function getComponentStateSelectors<Store extends ComponentStore<any>>(
-  componentStore: Store & NotAllowedComponentStateCheck<Store>
+  componentStore: Store
 ): ComponentStateSelectors<Store> {
   let state: ComponentState<Store>;
   try {
