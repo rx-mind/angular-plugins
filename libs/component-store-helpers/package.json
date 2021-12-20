@@ -9,13 +9,13 @@
   ],
   "author": "Marko Stanimirović <markostanimirovic95@gmail.com>",
   "license": "MIT",
-  "homepage": "https://github.com/rx-mind/ngrx-plugins/tree/master/libs/component-store-helpers#readme",
+  "homepage": "https://github.com/rx-mind/angular-plugins/tree/master/libs/component-store-helpers#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/rx-mind/ngrx-plugins.git"
+    "url": "https://github.com/rx-mind/angular-plugins.git"
   },
   "bugs": {
-    "url": "https://github.com/rx-mind/ngrx-plugins/issues"
+    "url": "https://github.com/rx-mind/angular-plugins/issues"
   },
   "peerDependencies": {
     "@ngrx/component-store": "^12.0.0"

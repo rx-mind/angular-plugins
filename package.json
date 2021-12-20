@@ -1,6 +1,6 @@
 {
-  "name": "@rx-mind/ngrx-plugins",
-  "description": "Community-Driven NgRx Plugins",
+  "name": "@rx-mind/angular-plugins",
+  "description": "Reactive Plugins for Angular",
   "author": "Marko Stanimirović <markostanimirovic95@gmail.com>",
   "license": "MIT",
   "private": true,

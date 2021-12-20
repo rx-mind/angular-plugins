@@ -1,8 +1,8 @@
 # @rx-mind/data-component-store
 
-[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/rx-mind/ngrx-plugins/blob/master/LICENSE)
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/rx-mind/angular-plugins/blob/master/LICENSE)
 [![NPM](https://img.shields.io/npm/v/@rx-mind/data-component-store)](https://www.npmjs.com/package/@rx-mind/data-component-store)
-[![CI Status](https://github.com/rx-mind/ngrx-plugins/actions/workflows/ci.yml/badge.svg)](https://github.com/rx-mind/ngrx-plugins/actions/workflows/ci.yml)
+[![CI Status](https://github.com/rx-mind/angular-plugins/actions/workflows/ci.yml/badge.svg)](https://github.com/rx-mind/angular-plugins/actions/workflows/ci.yml)
 
 **[Component Store](https://ngrx.io/guide/component-store) with [Entity](https://ngrx.io/guide/entity) Selectors, Updaters, and Effects**
 
@@ -45,7 +45,7 @@ It's inspired by `@ngrx/component-store` reactivity, `@ngrx/data` simplicity, an
   The default behavior of all data effects can be completely or partially changed.
 
 - **Built-In Entity Updaters and Selectors.**
-  `DataComponentStore` extends [`EntityComponentStore`](https://github.com/rx-mind/ngrx-plugins/tree/master/libs/entity-component-store#readme)
+  `DataComponentStore` extends [`EntityComponentStore`](https://github.com/rx-mind/angular-plugins/tree/master/libs/entity-component-store#readme)
   and contains all of its selectors and updaters.
 
 - **Fully Reactive.**
@@ -227,7 +227,7 @@ interface MoviesState extends DataState<Movie, string> {
 
 `DataState` interface contains following properties: `ids`, `entities`, `isLoadPending`, `isLoadByIdPending`, `isCreatePending`,
 `isUpdatePending`, and `isDeletePending`.
-It extends [`EntityState`](https://github.com/rx-mind/ngrx-plugins/tree/master/libs/entity-component-store#entity-state)
+It extends [`EntityState`](https://github.com/rx-mind/angular-plugins/tree/master/libs/entity-component-store#entity-state)
 and accepts entity type as the first and id type as the second generic argument. The second argument is optional
 and if not provided, the id type will be `string | number`.
 
@@ -257,7 +257,7 @@ const initialState = getInitialDataState<MoviesState>();
 
 The constructor of `DataComponentStore` accepts a configuration object that contains one required and three optional
 properties. Optional properties are `initialState`, `selectId` and `sortComparer` similar to the
-[`EntityComponentStore` configuration](https://github.com/rx-mind/ngrx-plugins/tree/master/libs/entity-component-store#initialization).
+[`EntityComponentStore` configuration](https://github.com/rx-mind/angular-plugins/tree/master/libs/entity-component-store#initialization).
 Required configuration property is `baseUrl` or `dataService`.
 
 ```ts
@@ -440,7 +440,7 @@ export class MoviesStore extends DataComponentStore<MoviesState> {
 ## Selectors
 
 `DataComponentStore` contains entity selectors: `ids$`, `entities$`, `all$`, and `total$`.
-Read more about entity selectors [here](https://github.com/rx-mind/ngrx-plugins/tree/master/libs/entity-component-store#selectors).
+Read more about entity selectors [here](https://github.com/rx-mind/angular-plugins/tree/master/libs/entity-component-store#selectors).
 
 Also, it contains the following selectors:
 
@@ -484,7 +484,7 @@ export class MoviesStore extends DataComponentStore<MoviesState> {
 
 `DataComponentStore` contains entity updaters: `addOne`, `addMany`, `setOne`, `setMany`, `setAll`,
 `removeOne`, `removeMany`, `removeAll`, `updateOne`, `updateMany`, `upsertOne`, `upsertMany`, `mapOne`, and `map`.
-Read more about entity updaters [here](https://github.com/rx-mind/ngrx-plugins/tree/master/libs/entity-component-store#updaters).
+Read more about entity updaters [here](https://github.com/rx-mind/angular-plugins/tree/master/libs/entity-component-store#updaters).
 
 ## Effects
 
@@ -557,7 +557,7 @@ When called, it will set `isLoadPending` to `true`, and move it back to `false` 
 If `load` is called when another load request is in progress, it will cancel the previous one and send a new request.
 
 By default, `load` effect expects an array of entities to be returned from the data service and replaces current collection
-with a new one by using [`setAll` entity updater](https://github.com/rx-mind/ngrx-plugins/tree/master/libs/entity-component-store#updaters).
+with a new one by using [`setAll` entity updater](https://github.com/rx-mind/angular-plugins/tree/master/libs/entity-component-store#updaters).
 However, the default behavior `load` effect can be changed. Read more [here](#changing-default-behavior).
 
 ### `loadById`
@@ -621,7 +621,7 @@ When called, it will set `isLoadByIdPending` to `true`, and move it back to `fal
 request is in progress.
 
 On success, `loadById` effect will add or replace loaded entity in the collection by using
-[`setOne` entity updater](https://github.com/rx-mind/ngrx-plugins/tree/master/libs/entity-component-store#updaters).
+[`setOne` entity updater](https://github.com/rx-mind/angular-plugins/tree/master/libs/entity-component-store#updaters).
 However, the default behavior of `loadById` effect can be changed. Read more [here](#changing-default-behavior).
 
 ### `create`
@@ -653,7 +653,7 @@ When called, it will set `isCreatePending` to `true`, and move it back to `false
 is in progress.
 
 On success, `create` effect will add created entity to the collection by using
-[`addOne` entity updater](https://github.com/rx-mind/ngrx-plugins/tree/master/libs/entity-component-store#updaters).
+[`addOne` entity updater](https://github.com/rx-mind/angular-plugins/tree/master/libs/entity-component-store#updaters).
 However, the default behavior of `create` effect can be changed. Read more [here](#changing-default-behavior).
 
 ### `update`
@@ -685,7 +685,7 @@ When called, it will set `isUpdatePending` to `true`, and move it back to `false
 is in progress.
 
 On success, `update` effect will update entity in the collection by using
-[`updateOne` entity updater](https://github.com/rx-mind/ngrx-plugins/tree/master/libs/entity-component-store#updaters).
+[`updateOne` entity updater](https://github.com/rx-mind/angular-plugins/tree/master/libs/entity-component-store#updaters).
 However, the default behavior of `update` effect can be changed. Read more [here](#changing-default-behavior).
 
 ### `delete`
@@ -717,7 +717,7 @@ When called, it will set `isDeletePending` to `true`, and move it back to `false
 is in progress.
 
 On success, `delete` effect will remove entity from the collection by using
-[`removeOne` entity updater](https://github.com/rx-mind/ngrx-plugins/tree/master/libs/entity-component-store#updaters).
+[`removeOne` entity updater](https://github.com/rx-mind/angular-plugins/tree/master/libs/entity-component-store#updaters).
 However, the default behavior of `delete` effect can be changed. Read more [here](#changing-default-behavior).
 
 ### `overrideDataEffects`
@@ -873,9 +873,9 @@ export class MoviesStore extends DataComponentStore<MoviesState> {
 
 ## Examples
 
-- [CRUD](https://github.com/rx-mind/ngrx-plugins/tree/master/apps/examples/data-cs-crud)
-- [Search](https://github.com/rx-mind/ngrx-plugins/tree/master/apps/examples/data-cs-search)
-- [Pagination](https://github.com/rx-mind/ngrx-plugins/tree/master/apps/examples/data-cs-pagination)
+- [CRUD](https://github.com/rx-mind/angular-plugins/tree/master/apps/examples/data-cs-crud)
+- [Search](https://github.com/rx-mind/angular-plugins/tree/master/apps/examples/data-cs-search)
+- [Pagination](https://github.com/rx-mind/angular-plugins/tree/master/apps/examples/data-cs-pagination)
 
 ## TODO List
 

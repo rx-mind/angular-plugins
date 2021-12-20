@@ -2,7 +2,7 @@
 
 Please check if your PR fulfills the following requirements:
 
-- [ ] The commit message follows our [guidelines](https://github.com/rx-mind/ngrx-plugins/blob/master/CONTRIBUTING.md#commit-message-guidelines)
+- [ ] The commit message follows our [guidelines](https://github.com/rx-mind/angular-plugins/blob/master/CONTRIBUTING.md#commit-message-guidelines)
 - [ ] Tests for the changes have been added (for bug fixes / features)
 - [ ] Documentation has been added / updated (for bug fixes / features)
 

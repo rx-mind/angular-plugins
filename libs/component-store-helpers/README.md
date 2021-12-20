@@ -1,8 +1,8 @@
 # @rx-mind/component-store-helpers
 
-[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/rx-mind/ngrx-plugins/blob/master/LICENSE)
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/rx-mind/angular-plugins/blob/master/LICENSE)
 [![NPM](https://img.shields.io/npm/v/@rx-mind/component-store-helpers)](https://www.npmjs.com/package/@rx-mind/component-store-helpers)
-[![CI Status](https://github.com/rx-mind/ngrx-plugins/actions/workflows/ci.yml/badge.svg)](https://github.com/rx-mind/ngrx-plugins/actions/workflows/ci.yml)
+[![CI Status](https://github.com/rx-mind/angular-plugins/actions/workflows/ci.yml/badge.svg)](https://github.com/rx-mind/angular-plugins/actions/workflows/ci.yml)
 
 **[Component Store](https://ngrx.io/guide/component-store) Helpers for Better Developer Experience**
 

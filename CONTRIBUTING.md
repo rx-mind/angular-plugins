@@ -59,7 +59,7 @@ npm run affected:lint
 
 We have very precise rules over how our git commit messages can be formatted. This leads to **more
 readable messages** that are easy to follow when looking through the **project history**. But also,
-we use the git commit messages to **generate the NgRx Plugins changelog**.
+we use the git commit messages to **generate the Angular Plugins changelog**.
 
 ### Commit Message Format
 
@@ -81,7 +81,7 @@ to read on GitHub as well as in various git tools.
 
 The footer should contain a [closing reference to an issue](https://help.github.com/articles/closing-issues-via-commit-messages/) if any.
 
-Samples: (even more [samples](https://github.com/rx-mind/ngrx-plugins/commits/master))
+Samples: (even more [samples](https://github.com/rx-mind/angular-plugins/commits/master))
 
 ```
 docs(changelog): update changelog to beta.5
