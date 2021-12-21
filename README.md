@@ -7,9 +7,9 @@
 
 ## Available Plugins
 
-- [@rx-mind/entity-component-store](https://github.com/rx-mind/angular-plugins/tree/master/libs/entity-component-store#readme)
-- [@rx-mind/data-component-store](https://github.com/rx-mind/angular-plugins/tree/master/libs/data-component-store#readme)
 - [@rx-mind/component-store-helpers](https://github.com/rx-mind/angular-plugins/tree/master/libs/component-store-helpers#readme)
+- [@rx-mind/data-component-store](https://github.com/rx-mind/angular-plugins/tree/master/libs/data-component-store#readme)
+- [@rx-mind/entity-component-store](https://github.com/rx-mind/angular-plugins/tree/master/libs/entity-component-store#readme)
 
 ## Contributing
 

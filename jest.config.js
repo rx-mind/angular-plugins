@@ -1,5 +1,8 @@
+const { getJestProjects } = require('@nrwl/jest');
+
 module.exports = {
   projects: [
+    ...getJestProjects(),
     '<rootDir>/libs/entity-component-store',
     '<rootDir>/libs/data-component-store',
     '<rootDir>/libs/component-store-helpers',

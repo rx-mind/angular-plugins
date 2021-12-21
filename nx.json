@@ -15,30 +15,19 @@
       "runner": "@nrwl/nx-cloud",
       "options": {
         "cacheableOperations": ["build", "lint", "test", "e2e"],
-        "accessToken": "ZWVlNGZkNDYtNTcwYi00NjlhLWE3OWEtMTQ2YTc1ZTZlZGQ3fHJlYWQtd3JpdGU=",
+        "accessToken": "YjQ5ODFiODMtODM3Mi00NDQyLTkyYzEtYTEwOWZiNjJmY2JmfHJlYWQtd3JpdGU=",
         "canTrackAnalytics": false,
-        "showUsageWarnings": true
+        "showUsageWarnings": true,
+        "parallel": 1
       }
     }
   },
-  "projects": {
-    "entity-component-store": {
-      "tags": []
-    },
-    "data-component-store": {
-      "tags": []
-    },
-    "component-store-helpers": {
-      "tags": []
-    },
-    "examples-data-cs-crud": {
-      "tags": []
-    },
-    "examples-data-cs-search": {
-      "tags": []
-    },
-    "examples-data-cs-pagination": {
-      "tags": []
-    }
+  "targetDependencies": {
+    "build": [
+      {
+        "target": "build",
+        "projects": "dependencies"
+      }
+    ]
   }
 }
