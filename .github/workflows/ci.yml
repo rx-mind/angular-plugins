@@ -35,7 +35,7 @@ jobs:
       - name: Install Dependencies
         run: npm ci
       - name: Format
-        run: npm run format:check
+        run: npm run format:check -- --base=origin/master --head=HEAD
       - name: Lint
         run: npm run lint
       - name: Test
