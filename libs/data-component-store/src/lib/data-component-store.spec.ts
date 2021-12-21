@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { of, throwError } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { TestScheduler } from 'rxjs/testing';
 import { DATA_COMPONENT_STORE_CONFIG, DataComponentStore } from './data-component-store';
@@ -101,9 +101,9 @@ describe('DataComponentStore', () => {
 
           return {
             ...setup(),
-            store: (TestBed.inject(
+            store: TestBed.inject(
               DataComponentStore
-            ) as unknown) as DataComponentStore<ProductsState>,
+            ) as unknown as DataComponentStore<ProductsState>,
           };
         }
 
@@ -186,11 +186,16 @@ describe('DataComponentStore', () => {
       it('should return true when any load request is pending', () => {
         const { testScheduler, store, dataService } = selectorsSetup();
 
-        spyOn(dataService, 'get').and.returnValues(
+        const mockValues = [
           of([]).pipe(delay(10)),
           throwError('error'),
-          of([]).pipe(delay(3))
-        );
+          of([]).pipe(delay(3)),
+        ] as any[];
+        jest
+          .spyOn(dataService, 'get')
+          .mockReturnValueOnce(of([]).pipe(delay(10)))
+          .mockReturnValueOnce(throwError('error'))
+          .mockReturnValueOnce(of([]).pipe(delay(3)));
 
         testScheduler.run(({ expectObservable }) => {
           store.load();
@@ -211,12 +216,12 @@ describe('DataComponentStore', () => {
       it('should return true when any load by id request is pending', () => {
         const { testScheduler, store, dataService } = selectorsSetup();
 
-        spyOn(dataService, 'getById').and.returnValues(
-          of(p1).pipe(delay(4)),
-          throwError('error'),
-          of(p2).pipe(delay(2)),
-          of(p3).pipe(delay(3))
-        );
+        jest
+          .spyOn(dataService, 'getById')
+          .mockReturnValueOnce(of(p1).pipe(delay(4)))
+          .mockReturnValueOnce(throwError('error'))
+          .mockReturnValueOnce(of(p2).pipe(delay(2)))
+          .mockReturnValueOnce(of(p3).pipe(delay(3)));
 
         testScheduler.run(({ expectObservable }) => {
           store.loadById(1);
@@ -240,11 +245,11 @@ describe('DataComponentStore', () => {
       it('should return true when any create request is pending', () => {
         const { testScheduler, store, dataService } = selectorsSetup();
 
-        spyOn(dataService, 'create').and.returnValues(
-          of(p1).pipe(delay(3)),
-          of(p2).pipe(delay(2)),
-          of(p3).pipe(delay(2))
-        );
+        jest
+          .spyOn(dataService, 'create')
+          .mockReturnValueOnce(of(p1).pipe(delay(3)))
+          .mockReturnValueOnce(of(p2).pipe(delay(2)))
+          .mockReturnValueOnce(of(p3).pipe(delay(2)));
 
         testScheduler.run(({ expectObservable }) => {
           testScheduler.schedule(() => store.create(p1), 1);
@@ -266,11 +271,11 @@ describe('DataComponentStore', () => {
       it('should return true when any update request is pending', () => {
         const { testScheduler, store, dataService } = selectorsSetup();
 
-        spyOn(dataService, 'update').and.returnValues(
-          of(p1).pipe(delay(2)),
-          of(p2).pipe(delay(2)),
-          of(p1).pipe(delay(3))
-        );
+        jest
+          .spyOn(dataService, 'update')
+          .mockReturnValueOnce(of(p1).pipe(delay(2)))
+          .mockReturnValueOnce(of(p2).pipe(delay(2)))
+          .mockReturnValueOnce(of(p1).pipe(delay(3)));
 
         testScheduler.run(({ expectObservable }) => {
           store.update({ id: p1.id, changes: { name: p1.name } });
@@ -291,7 +296,10 @@ describe('DataComponentStore', () => {
       it('should return true when any delete request is pending', () => {
         const { testScheduler, store, dataService } = selectorsSetup();
 
-        spyOn(dataService, 'delete').and.returnValues(of(1).pipe(delay(2)), of(2).pipe(delay(2)));
+        jest
+          .spyOn(dataService, 'delete')
+          .mockReturnValueOnce(of(1).pipe(delay(2)))
+          .mockReturnValueOnce(of(2).pipe(delay(2)));
 
         testScheduler.run(({ expectObservable }) => {
           testScheduler.schedule(() => store.delete(1), 1);
@@ -371,7 +379,7 @@ describe('DataComponentStore', () => {
         const { store, dataService } = effectsSetup();
         const params = { filter: 'product' };
 
-        spyOn(dataService, 'get').and.returnValue(of([]));
+        jest.spyOn(dataService, 'get').mockReturnValue(of([]));
 
         store.load(params);
         expect(dataService.get).toHaveBeenCalledWith(params);
@@ -380,7 +388,7 @@ describe('DataComponentStore', () => {
       it('should invoke get from data service without query parameters', () => {
         const { store, dataService } = effectsSetup();
 
-        spyOn(dataService, 'get').and.returnValue(of([]));
+        jest.spyOn(dataService, 'get').mockReturnValue(of([]));
 
         store.load();
         expect(dataService.get).toHaveBeenCalledWith(undefined);
@@ -390,7 +398,7 @@ describe('DataComponentStore', () => {
         const { dataService, testScheduler } = effectsSetup();
         const filter = 'product';
 
-        spyOn(dataService, 'get').and.returnValue(of([]));
+        jest.spyOn(dataService, 'get').mockReturnValue(of([]));
 
         class ProductsStore extends BaseProductsStore {
           constructor() {
@@ -414,7 +422,7 @@ describe('DataComponentStore', () => {
       it('should invoke default load success effect when load success effect is not overridden', () => {
         const { testScheduler, store, dataService } = effectsSetup();
 
-        spyOn(dataService, 'get').and.returnValue(of([p1, p2]).pipe(delay(3)));
+        jest.spyOn(dataService, 'get').mockReturnValue(of([p1, p2]).pipe(delay(3)));
 
         testScheduler.run(({ expectObservable }) => {
           testScheduler.schedule(() => store.load(), 1);
@@ -431,7 +439,7 @@ describe('DataComponentStore', () => {
         const { dataService, testScheduler } = effectsSetup();
         const filter = 'p';
 
-        spyOn(dataService, 'get').and.returnValue(of({ products: [p1] }).pipe(delay(2)));
+        jest.spyOn(dataService, 'get').mockReturnValue(of({ products: [p1] }).pipe(delay(2)));
 
         class ProductsStore extends BaseProductsStore {
           constructor() {
@@ -462,7 +470,7 @@ describe('DataComponentStore', () => {
         const { store, dataService } = effectsSetup();
 
         console.error = jest.fn();
-        spyOn(dataService, 'get').and.returnValue(of({ products: [p1, p2] }));
+        jest.spyOn(dataService, 'get').mockReturnValue(of({ products: [p1, p2] }));
 
         store.load();
         expect(console.error).toHaveBeenCalledWith(
@@ -475,7 +483,7 @@ describe('DataComponentStore', () => {
         const { dataService, testScheduler } = effectsSetup();
         const message = 'productsError';
 
-        spyOn(dataService, 'get').and.returnValue(throwError({ message }));
+        jest.spyOn(dataService, 'get').mockReturnValue(throwError({ message }));
 
         class ProductsStore extends BaseProductsStore {
           constructor() {
@@ -500,7 +508,7 @@ describe('DataComponentStore', () => {
         const { dataService, testScheduler } = effectsSetup();
         const errorMessage = 'error';
 
-        spyOn(dataService, 'get').and.returnValue(throwError(errorMessage));
+        jest.spyOn(dataService, 'get').mockReturnValue(throwError(errorMessage));
 
         class ProductsStore extends BaseProductsStore {
           constructor() {
@@ -526,7 +534,7 @@ describe('DataComponentStore', () => {
         const loadErrorMessage = 'loadErrorMessage';
         const errorMessage = 'errorMessage';
 
-        spyOn(dataService, 'get').and.returnValue(throwError('error'));
+        jest.spyOn(dataService, 'get').mockReturnValue(throwError('error'));
 
         class ProductsStore extends BaseProductsStore {
           constructor() {
@@ -560,7 +568,7 @@ describe('DataComponentStore', () => {
       it('should invoke get by id from data service', () => {
         const { store, dataService } = effectsSetup();
 
-        spyOn(dataService, 'getById').and.returnValue(of(p1));
+        jest.spyOn(dataService, 'getById').mockReturnValue(of(p1));
 
         store.loadById(p1.id);
         expect(dataService.getById).toHaveBeenCalledWith(p1.id);
@@ -569,7 +577,7 @@ describe('DataComponentStore', () => {
       it('should invoke custom load by id start effect when load by id start effect is overridden', () => {
         const { dataService, testScheduler } = effectsSetup();
 
-        spyOn(dataService, 'getById').and.returnValue(of(p1));
+        jest.spyOn(dataService, 'getById').mockReturnValue(of(p1));
 
         class ProductsStore extends BaseProductsStore {
           constructor() {
@@ -593,7 +601,7 @@ describe('DataComponentStore', () => {
       it('should invoke default load by id success effect when load by id success effect is not overridden', () => {
         const { testScheduler, store, dataService } = effectsSetup();
 
-        spyOn(dataService, 'getById').and.returnValue(of(p1).pipe(delay(2)));
+        jest.spyOn(dataService, 'getById').mockReturnValue(of(p1).pipe(delay(2)));
 
         testScheduler.run(({ expectObservable }) => {
           testScheduler.schedule(() => store.loadById(1), 1);
@@ -609,7 +617,7 @@ describe('DataComponentStore', () => {
       it('should invoke custom load by id success effect when load by id success effect is overridden', () => {
         const { dataService, testScheduler } = effectsSetup();
 
-        spyOn(dataService, 'getById').and.returnValue(of(p1).pipe(delay(3)));
+        jest.spyOn(dataService, 'getById').mockReturnValue(of(p1).pipe(delay(3)));
 
         class ProductsStore extends BaseProductsStore {
           constructor() {
@@ -639,7 +647,7 @@ describe('DataComponentStore', () => {
         const { dataService, testScheduler } = effectsSetup();
         const message = 'loadByIdError';
 
-        spyOn(dataService, 'getById').and.returnValue(throwError({ message }));
+        jest.spyOn(dataService, 'getById').mockReturnValue(throwError({ message }));
 
         class ProductsStore extends BaseProductsStore {
           constructor() {
@@ -664,7 +672,7 @@ describe('DataComponentStore', () => {
         const { dataService, testScheduler } = effectsSetup();
         const errorMessage = 'error';
 
-        spyOn(dataService, 'getById').and.returnValue(throwError({ errorMessage }));
+        jest.spyOn(dataService, 'getById').mockReturnValue(throwError({ errorMessage }));
 
         class ProductsStore extends BaseProductsStore {
           constructor() {
@@ -690,7 +698,7 @@ describe('DataComponentStore', () => {
         const loadByIdError = 'loadByIdError';
         const commonError = 'commonError';
 
-        spyOn(dataService, 'getById').and.returnValue(throwError('error'));
+        jest.spyOn(dataService, 'getById').mockReturnValue(throwError('error'));
 
         class ProductsStore extends BaseProductsStore {
           constructor() {
@@ -724,7 +732,7 @@ describe('DataComponentStore', () => {
       it('should invoke create from data service', () => {
         const { store, dataService } = effectsSetup();
 
-        spyOn(dataService, 'create').and.returnValue(of(p1));
+        jest.spyOn(dataService, 'create').mockReturnValue(of(p1));
 
         store.create(p1);
         expect(dataService.create).toHaveBeenCalledWith(p1);
@@ -733,7 +741,7 @@ describe('DataComponentStore', () => {
       it('should invoke custom create start effect when create start effect is overridden', () => {
         const { dataService, testScheduler } = effectsSetup();
 
-        spyOn(dataService, 'create').and.returnValue(of(p1));
+        jest.spyOn(dataService, 'create').mockReturnValue(of(p1));
 
         class ProductsStore extends BaseProductsStore {
           constructor() {
@@ -757,7 +765,7 @@ describe('DataComponentStore', () => {
       it('should invoke default create success effect when create success effect is not overridden', () => {
         const { testScheduler, store, dataService } = effectsSetup();
 
-        spyOn(dataService, 'create').and.returnValue(of(p1).pipe(delay(3)));
+        jest.spyOn(dataService, 'create').mockReturnValue(of(p1).pipe(delay(3)));
 
         testScheduler.run(({ expectObservable }) => {
           testScheduler.schedule(() => store.create(p1), 1);
@@ -773,7 +781,7 @@ describe('DataComponentStore', () => {
       it('should invoke custom create success effect when create success effect is overridden', () => {
         const { dataService, testScheduler } = effectsSetup();
 
-        spyOn(dataService, 'create').and.returnValue(of(p1).pipe(delay(1)));
+        jest.spyOn(dataService, 'create').mockReturnValue(of(p1).pipe(delay(1)));
 
         class ProductsStore extends BaseProductsStore {
           constructor() {
@@ -803,7 +811,7 @@ describe('DataComponentStore', () => {
         const { dataService, testScheduler } = effectsSetup();
         const createError = 'createError';
 
-        spyOn(dataService, 'create').and.returnValue(throwError({ createError }));
+        jest.spyOn(dataService, 'create').mockReturnValue(throwError({ createError }));
 
         class ProductsStore extends BaseProductsStore {
           constructor() {
@@ -828,7 +836,7 @@ describe('DataComponentStore', () => {
         const { dataService, testScheduler } = effectsSetup();
         const error = 'error';
 
-        spyOn(dataService, 'create').and.returnValue(throwError({ error }));
+        jest.spyOn(dataService, 'create').mockReturnValue(throwError({ error }));
 
         class ProductsStore extends BaseProductsStore {
           constructor() {
@@ -854,7 +862,7 @@ describe('DataComponentStore', () => {
         const createError = 'createError';
         const commonError = 'commonError';
 
-        spyOn(dataService, 'create').and.returnValue(throwError('error'));
+        jest.spyOn(dataService, 'create').mockReturnValue(throwError('error'));
 
         class ProductsStore extends BaseProductsStore {
           constructor() {
@@ -888,7 +896,7 @@ describe('DataComponentStore', () => {
       it('should invoke update from data service', () => {
         const { store, dataService } = effectsSetup();
 
-        spyOn(dataService, 'update').and.returnValue(of(p2));
+        jest.spyOn(dataService, 'update').mockReturnValue(of(p2));
 
         store.update({ id: p2.id, changes: p2 });
         expect(dataService.update).toHaveBeenCalledWith({ id: p2.id, changes: p2 });
@@ -897,7 +905,7 @@ describe('DataComponentStore', () => {
       it('should invoke custom update start effect when update start effect is overridden', () => {
         const { dataService, testScheduler } = effectsSetup();
 
-        spyOn(dataService, 'update').and.returnValue(of(p2));
+        jest.spyOn(dataService, 'update').mockReturnValue(of(p2));
 
         class ProductsStore extends BaseProductsStore {
           constructor() {
@@ -922,7 +930,7 @@ describe('DataComponentStore', () => {
         const { testScheduler, store, dataService } = effectsSetup();
         const name = 'P2 updated';
 
-        spyOn(dataService, 'update').and.returnValue(of({ ...p2, name }).pipe(delay(2)));
+        jest.spyOn(dataService, 'update').mockReturnValue(of({ ...p2, name }).pipe(delay(2)));
 
         testScheduler.run(({ expectObservable }) => {
           store.addOne(p2);
@@ -939,7 +947,7 @@ describe('DataComponentStore', () => {
       it('should invoke custom update success effect when update success effect is overridden', () => {
         const { dataService, testScheduler } = effectsSetup();
 
-        spyOn(dataService, 'update').and.returnValue(of(p2).pipe(delay(2)));
+        jest.spyOn(dataService, 'update').mockReturnValue(of(p2).pipe(delay(2)));
 
         class ProductsStore extends BaseProductsStore {
           constructor() {
@@ -970,7 +978,7 @@ describe('DataComponentStore', () => {
         const { dataService, testScheduler } = effectsSetup();
         const message = 'updateError';
 
-        spyOn(dataService, 'update').and.returnValue(throwError({ message }));
+        jest.spyOn(dataService, 'update').mockReturnValue(throwError({ message }));
 
         class ProductsStore extends BaseProductsStore {
           constructor() {
@@ -995,7 +1003,7 @@ describe('DataComponentStore', () => {
         const { dataService, testScheduler } = effectsSetup();
         const error = 'commonError';
 
-        spyOn(dataService, 'update').and.returnValue(throwError({ error }));
+        jest.spyOn(dataService, 'update').mockReturnValue(throwError({ error }));
 
         class ProductsStore extends BaseProductsStore {
           constructor() {
@@ -1021,7 +1029,7 @@ describe('DataComponentStore', () => {
         const updateError = 'updateError';
         const commonError = 'commonError';
 
-        spyOn(dataService, 'update').and.returnValue(throwError('error'));
+        jest.spyOn(dataService, 'update').mockReturnValue(throwError('error'));
 
         class ProductsStore extends BaseProductsStore {
           constructor() {
@@ -1055,7 +1063,7 @@ describe('DataComponentStore', () => {
       it('should invoke delete from data service', () => {
         const { store, dataService } = effectsSetup();
 
-        spyOn(dataService, 'delete').and.returnValue(of(p3.id));
+        jest.spyOn(dataService, 'delete').mockReturnValue(of(p3.id));
 
         store.delete(p3.id);
         expect(dataService.delete).toHaveBeenCalledWith(p3.id);
@@ -1064,7 +1072,7 @@ describe('DataComponentStore', () => {
       it('should invoke custom delete start effect when delete start effect is overridden', () => {
         const { dataService, testScheduler } = effectsSetup();
 
-        spyOn(dataService, 'delete').and.returnValue(of(p3.id).pipe(delay(2)));
+        jest.spyOn(dataService, 'delete').mockReturnValue(of(p3.id).pipe(delay(2)));
 
         class ProductsStore extends BaseProductsStore {
           constructor() {
@@ -1088,7 +1096,7 @@ describe('DataComponentStore', () => {
       it('should invoke default delete success effect when delete success effect is not overridden', () => {
         const { testScheduler, store, dataService } = effectsSetup();
 
-        spyOn(dataService, 'delete').and.returnValue(of(p3).pipe(delay(1)));
+        jest.spyOn(dataService, 'delete').mockReturnValue(of(p3).pipe(delay(1)));
 
         testScheduler.run(({ expectObservable }) => {
           store.addOne(p3);
@@ -1105,7 +1113,7 @@ describe('DataComponentStore', () => {
       it('should invoke custom delete success effect when delete success effect is overridden', () => {
         const { dataService, testScheduler } = effectsSetup();
 
-        spyOn(dataService, 'delete').and.returnValue(of(p3).pipe(delay(2)));
+        jest.spyOn(dataService, 'delete').mockReturnValue(of(p3).pipe(delay(2)));
 
         class ProductsStore extends BaseProductsStore {
           constructor() {
@@ -1137,7 +1145,7 @@ describe('DataComponentStore', () => {
         const { dataService, testScheduler } = effectsSetup();
         const deleteError = 'deleteError';
 
-        spyOn(dataService, 'delete').and.returnValue(throwError({ deleteError }));
+        jest.spyOn(dataService, 'delete').mockReturnValue(throwError({ deleteError }));
 
         class ProductsStore extends BaseProductsStore {
           constructor() {
@@ -1162,7 +1170,7 @@ describe('DataComponentStore', () => {
         const { dataService, testScheduler } = effectsSetup();
         const message = 'commonError';
 
-        spyOn(dataService, 'delete').and.returnValue(throwError({ message }));
+        jest.spyOn(dataService, 'delete').mockReturnValue(throwError({ message }));
 
         class ProductsStore extends BaseProductsStore {
           constructor() {
@@ -1188,7 +1196,7 @@ describe('DataComponentStore', () => {
         const deleteError = 'deleteError';
         const commonError = 'commonError';
 
-        spyOn(dataService, 'delete').and.returnValue(throwError('error'));
+        jest.spyOn(dataService, 'delete').mockReturnValue(throwError('error'));
 
         class ProductsStore extends BaseProductsStore {
           constructor() {

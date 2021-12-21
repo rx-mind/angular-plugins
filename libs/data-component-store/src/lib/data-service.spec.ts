@@ -31,7 +31,7 @@ describe('DefaultDataService', () => {
       const baseUrl = '/books';
       const products = [{ id: 10 }];
       const { dataService, http, testScheduler } = setup(baseUrl);
-      spyOn(http, 'get').and.returnValue(of(products));
+      jest.spyOn(http, 'get').mockReturnValue(of(products));
 
       testScheduler.run(({ expectObservable }) => {
         expectObservable(dataService.get()).toBe('(x|)', { x: products });
@@ -44,7 +44,7 @@ describe('DefaultDataService', () => {
       const products = [{ id: 1 }, { id: 2 }];
       const params = { filter: 'product' };
       const { dataService, http, testScheduler } = setup(baseUrl + '//');
-      spyOn(http, 'get').and.returnValue(of(products));
+      jest.spyOn(http, 'get').mockReturnValue(of(products));
 
       testScheduler.run(({ expectObservable }) => {
         expectObservable(dataService.get(params)).toBe('(x|)', { x: products });
@@ -58,7 +58,7 @@ describe('DefaultDataService', () => {
       const baseUrl = '/movies';
       const id = 100;
       const { dataService, http, testScheduler } = setup(baseUrl);
-      spyOn(http, 'get').and.returnValue(of({ id }));
+      jest.spyOn(http, 'get').mockReturnValue(of({ id }));
 
       testScheduler.run(({ expectObservable }) => {
         expectObservable(dataService.getById(id)).toBe('(x|)', { x: { id } });
@@ -72,7 +72,7 @@ describe('DefaultDataService', () => {
       const baseUrl = '/songs';
       const song = { id: 1, title: 'song' };
       const { dataService, http, testScheduler } = setup(baseUrl);
-      spyOn(http, 'post').and.returnValue(of(song));
+      jest.spyOn(http, 'post').mockReturnValue(of(song));
 
       testScheduler.run(({ expectObservable }) => {
         expectObservable(dataService.create(song)).toBe('(x|)', { x: song });
@@ -87,7 +87,7 @@ describe('DefaultDataService', () => {
       const id = 10;
       const changes = { name: 'stratocaster' };
       const { dataService, http, testScheduler } = setup(baseUrl);
-      spyOn(http, 'put').and.returnValue(of({ ...changes, id }));
+      jest.spyOn(http, 'put').mockReturnValue(of({ ...changes, id }));
 
       testScheduler.run(({ expectObservable }) => {
         expectObservable(dataService.update({ id, changes })).toBe('(x|)', {
@@ -103,7 +103,7 @@ describe('DefaultDataService', () => {
       const baseUrl = '/jobs';
       const id = 23;
       const { dataService, http, testScheduler } = setup(baseUrl + '/');
-      spyOn(http, 'delete').and.returnValue(of(id));
+      jest.spyOn(http, 'delete').mockReturnValue(of(id));
 
       testScheduler.run(({ expectObservable }) => {
         expectObservable(dataService.delete(id)).toBe('(x|)', { x: id });
