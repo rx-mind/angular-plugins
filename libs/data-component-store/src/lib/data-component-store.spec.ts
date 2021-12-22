@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { Observable, of, throwError } from 'rxjs';
+import { of, throwError } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { TestScheduler } from 'rxjs/testing';
 import { DATA_COMPONENT_STORE_CONFIG, DataComponentStore } from './data-component-store';
@@ -186,11 +186,6 @@ describe('DataComponentStore', () => {
       it('should return true when any load request is pending', () => {
         const { testScheduler, store, dataService } = selectorsSetup();
 
-        const mockValues = [
-          of([]).pipe(delay(10)),
-          throwError('error'),
-          of([]).pipe(delay(3)),
-        ] as any[];
         jest
           .spyOn(dataService, 'get')
           .mockReturnValueOnce(of([]).pipe(delay(10)))
