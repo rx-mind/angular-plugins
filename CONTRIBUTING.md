@@ -5,7 +5,7 @@
 ### Install Dependencies
 
 ```
-npm ci
+yarn install --frozen-lockfile
 ```
 
 ### Run Tests
@@ -13,13 +13,13 @@ npm ci
 All:
 
 ```
-npm run test
+yarn test
 ```
 
 Affected:
 
 ```
-npm run affected:test
+yarn affected:test
 ```
 
 ### Run Build
@@ -27,13 +27,13 @@ npm run affected:test
 All:
 
 ```
-npm run build
+yarn build
 ```
 
 Affected:
 
 ```
-npm run affected:build
+yarn affected:build
 ```
 
 ### Run Lint
@@ -41,13 +41,13 @@ npm run affected:build
 All:
 
 ```
-npm run lint
+yarn lint
 ```
 
 Affected:
 
 ```
-npm run affected:lint
+yarn affected:lint
 ```
 
 ## Coding Rules

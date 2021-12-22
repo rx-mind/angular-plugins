@@ -3,11 +3,11 @@
 ## Install dependencies
 
 ```
-npm ci
+yarn install --frozen-lockfile
 ```
 
 ## Run Project
 
 ```
-npm run start:data-cs-search
+yarn start:data-cs-search
 ```

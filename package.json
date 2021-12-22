@@ -8,16 +8,16 @@
     "ng": "nx",
     "postinstall": "node ./decorate-angular-cli.js && ngcc --properties es2015 browser module main && husky install",
     "nx": "nx",
-    "start": "npm run start:data-cs-crud",
-    "start:data-cs-crud": "concurrently \"npm run start:server:data-cs-crud\" \"ng serve --project=examples-data-cs-crud\"",
-    "start:data-cs-search": "concurrently \"npm run start:server:data-cs-search\" \"ng serve --project=examples-data-cs-search\"",
-    "start:data-cs-pagination": "concurrently \"npm run start:server:data-cs-pagination\" \"ng serve --project=examples-data-cs-pagination\"",
+    "start": "yarn start:data-cs-crud",
+    "start:data-cs-crud": "concurrently \"yarn start:server:data-cs-crud\" \"ng serve --project=examples-data-cs-crud\"",
+    "start:data-cs-search": "concurrently \"yarn start:server:data-cs-search\" \"ng serve --project=examples-data-cs-search\"",
+    "start:data-cs-pagination": "concurrently \"yarn start:server:data-cs-pagination\" \"ng serve --project=examples-data-cs-pagination\"",
     "start:server:data-cs-crud": "json-server apps/examples/data-cs-crud/db.json --watch --delay 1000",
     "start:server:data-cs-search": "json-server apps/examples/data-cs-search/db.json --watch --delay 1000",
     "start:server:data-cs-pagination": "json-server apps/examples/data-cs-pagination/db.json --watch --delay 1000",
     "build": "nx run-many --target=build --all",
     "test": "nx run-many --target=test --all",
-    "test:coverage": "npm run test -- --codeCoverage",
+    "test:coverage": "yarn test --codeCoverage",
     "lint": "nx run-many --target=lint --all",
     "e2e": "nx run-many --target=e2e --all",
     "affected:apps": "nx affected:apps",
@@ -39,8 +39,8 @@
   },
   "lint-staged": {
     "*.{js,ts,html,css,scss,md,json}": [
-      "npm run format -- --uncommitted",
-      "npm run affected:lint -- --uncommitted --fix --parallel"
+      "yarn format --uncommitted",
+      "yarn affected:lint --uncommitted --fix --parallel"
     ]
   },
   "dependencies": {
