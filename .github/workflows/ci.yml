@@ -26,14 +26,14 @@ jobs:
         id: workspace-cache
         with:
           path: node_modules
-          key: ${{ runner.os }}-${{ matrix.node-version }}-workspace-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-${{ matrix.node-version }}-workspace-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-${{ matrix.node-version }}-workspace-
       - name: Install Dependencies
-        run: npm ci
+        run: yarn install --frozen-lockfile --non-interactive
       - name: Lint
-        run: npm run lint
+        run: yarn lint
       - name: Test
-        run: npm run test:coverage
+        run: yarn test:coverage
       - name: Build
-        run: npm run build
+        run: yarn build
