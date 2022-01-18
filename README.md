@@ -3,7 +3,7 @@
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/rx-mind/angular-plugins/blob/master/LICENSE)
 [![CI Status](https://github.com/rx-mind/angular-plugins/actions/workflows/ci.yml/badge.svg)](https://github.com/rx-mind/angular-plugins/actions/workflows/ci.yml)
 
-**Reactive Plugins for [Angular](https://github.com/angular/angular)**
+**Reactive [Angular](https://github.com/angular/angular) Plugins**
 
 ## Available Plugins
 
