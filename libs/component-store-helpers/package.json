@@ -1,6 +1,6 @@
 {
   "name": "@rx-mind/component-store-helpers",
-  "version": "12.0.1",
+  "version": "13.0.0",
   "description": "Component Store Helpers for Better Developer Experience",
   "keywords": [
     "Angular",
@@ -18,7 +18,7 @@
     "url": "https://github.com/rx-mind/angular-plugins/issues"
   },
   "peerDependencies": {
-    "@ngrx/component-store": "^12.0.0"
+    "@ngrx/component-store": "^13.0.0"
   },
   "dependencies": {
     "tslib": "^2.1.0"
