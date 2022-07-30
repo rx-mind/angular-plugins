@@ -8,7 +8,7 @@
       <input
         type="text"
         matInput
-        [formControl]="productForm.name"
+        [formControl]="productForm.controls.name"
         placeholder="Guitar"
         autocomplete="off"
       />
@@ -18,7 +18,7 @@
       <input
         type="number"
         matInput
-        [formControl]="productForm.price"
+        [formControl]="productForm.controls.price"
         placeholder="99.99"
         autocomplete="off"
       />

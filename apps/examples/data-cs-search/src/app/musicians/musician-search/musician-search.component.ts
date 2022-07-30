@@ -9,7 +9,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MusicianSearchComponent {
-  searchControl = new FormControl('');
+  searchControl = new FormControl('', { nonNullable: true });
 
   @Input() set query(query: string) {
     this.searchControl.setValue(query, { emitEvent: false });
