@@ -2,6 +2,7 @@
   "version": 1,
   "projects": {
     "component-store-helpers": {
+      "$schema": "../../node_modules/nx/schemas/project-schema.json",
       "projectType": "library",
       "root": "libs/component-store-helpers",
       "sourceRoot": "libs/component-store-helpers/src",
@@ -44,6 +45,7 @@
       }
     },
     "data-component-store": {
+      "$schema": "../../node_modules/nx/schemas/project-schema.json",
       "projectType": "library",
       "root": "libs/data-component-store",
       "sourceRoot": "libs/data-component-store/src",
@@ -86,6 +88,7 @@
       }
     },
     "entity-component-store": {
+      "$schema": "../../node_modules/nx/schemas/project-schema.json",
       "projectType": "library",
       "root": "libs/entity-component-store",
       "sourceRoot": "libs/entity-component-store/src",
@@ -128,6 +131,7 @@
       }
     },
     "examples-data-cs-crud": {
+      "$schema": "../../../node_modules/nx/schemas/project-schema.json",
       "projectType": "application",
       "root": "apps/examples/data-cs-crud",
       "sourceRoot": "apps/examples/data-cs-crud/src",
@@ -225,6 +229,7 @@
       }
     },
     "examples-data-cs-pagination": {
+      "$schema": "../../../node_modules/nx/schemas/project-schema.json",
       "projectType": "application",
       "root": "apps/examples/data-cs-pagination",
       "sourceRoot": "apps/examples/data-cs-pagination/src",
@@ -322,6 +327,7 @@
       }
     },
     "examples-data-cs-search": {
+      "$schema": "../../../node_modules/nx/schemas/project-schema.json",
       "projectType": "application",
       "root": "apps/examples/data-cs-search",
       "sourceRoot": "apps/examples/data-cs-search/src",
