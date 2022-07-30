@@ -15,6 +15,6 @@ export class ProductCreateComponent {
   @Output() create = new EventEmitter<Omit<Product, 'id'>>();
 
   onCreate(): void {
-    this.create.emit(this.productForm.value);
+    this.create.emit(this.productForm.value as Omit<Product, 'id'>);
   }
 }

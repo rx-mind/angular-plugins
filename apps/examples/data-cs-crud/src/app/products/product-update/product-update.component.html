@@ -6,14 +6,14 @@
   <form [formGroup]="productForm" (ngSubmit)="onUpdate()">
     <mat-form-field appearance="outline">
       <mat-label>Id</mat-label>
-      <input type="text" matInput [formControl]="productForm.id" />
+      <input type="text" matInput [formControl]="productForm.controls.id" />
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Name</mat-label>
       <input
         type="text"
         matInput
-        [formControl]="productForm.name"
+        [formControl]="productForm.controls.name"
         placeholder="Guitar"
         autocomplete="off"
       />
@@ -23,7 +23,7 @@
       <input
         type="number"
         matInput
-        [formControl]="productForm.price"
+        [formControl]="productForm.controls.price"
         placeholder="99.99"
         autocomplete="off"
       />
