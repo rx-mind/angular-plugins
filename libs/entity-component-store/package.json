@@ -1,6 +1,6 @@
 {
   "name": "@rx-mind/entity-component-store",
-  "version": "13.0.0",
+  "version": "14.0.0",
   "description": "Component Store with Entity Selectors and Updaters",
   "keywords": [
     "Angular",
@@ -19,8 +19,8 @@
     "url": "https://github.com/rx-mind/angular-plugins/issues"
   },
   "peerDependencies": {
-    "@angular/core": "^13.0.0",
-    "@ngrx/component-store": "^13.0.0"
+    "@angular/core": "^14.0.0",
+    "@ngrx/component-store": "^14.0.0"
   },
   "dependencies": {
     "tslib": "^2.1.0"
