@@ -1,16 +1,16 @@
-# @rx-mind/angular-plugins
+# @rx-mind/component-store-plugins
 
-[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/rx-mind/angular-plugins/blob/master/LICENSE)
-[![CI Status](https://github.com/rx-mind/angular-plugins/actions/workflows/ci.yml/badge.svg)](https://github.com/rx-mind/angular-plugins/actions/workflows/ci.yml)
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/rx-mind/component-store-plugins/blob/master/LICENSE)
 
-**Reactive [Angular](https://github.com/angular/angular) Plugins**
+> [!CAUTION]
+> This repository is no longer maintained.
 
 ## Available Plugins
 
-- [@rx-mind/component-store-helpers](https://github.com/rx-mind/angular-plugins/tree/master/libs/component-store-helpers#readme)
-- [@rx-mind/data-component-store](https://github.com/rx-mind/angular-plugins/tree/master/libs/data-component-store#readme)
-- [@rx-mind/entity-component-store](https://github.com/rx-mind/angular-plugins/tree/master/libs/entity-component-store#readme)
+- [@rx-mind/component-store-helpers](https://github.com/rx-mind/component-store-plugins/tree/master/libs/component-store-helpers#readme)
+- [@rx-mind/data-component-store](https://github.com/rx-mind/component-store-plugins/tree/master/libs/data-component-store#readme)
+- [@rx-mind/entity-component-store](https://github.com/rx-mind/component-store-plugins/tree/master/libs/entity-component-store#readme)
 
 ## Contributing
 
-Contributions are welcome! To get started, read our [contribution guidelines](https://github.com/rx-mind/angular-plugins/blob/master/CONTRIBUTING.md).
+Contributions are welcome! To get started, read our [contribution guidelines](https://github.com/rx-mind/component-store-plugins/blob/master/CONTRIBUTING.md).
